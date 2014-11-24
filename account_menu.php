@@ -4,16 +4,9 @@ session_start();
 //include_once 'includes/footer.php';
 if(isset($_SESSION['logged_in'])) {
     $user_id = $_SESSION['user_id'];
-}
+    include_once('includes/header.php');
 ?>
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css" id="style">
-</head>
-<body>
-<div id="account_menu" class="container">
+
     <div class="box menu">
         <h3>Seller Account</h3>
         <p><a href="sold_history.php">View Sold History</a></p>
@@ -29,6 +22,9 @@ if(isset($_SESSION['logged_in'])) {
         <h3>Settings</h3>
         <p><a href="order_history.php">Change Account Settings</a></p>
     </div>
-</div>
-</body>
-</html>
+<?php
+    include_once("includes/footer.php");
+} else {
+    header("Location: signin.php");
+}
+?>

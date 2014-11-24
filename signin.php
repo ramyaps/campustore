@@ -28,7 +28,9 @@ if (isset($_POST['email'], $_POST['password'])) {
 		    header("Location: admin/index.php");
 		} else {
 		    //echo "regular";
-		    header("Location: home_page.php");
+		    //It used to be home_page.php,
+		    //However, account_menu seems to have all we need in home_page.php
+		    header("Location: account_menu.php");
 		}
 		
 	    } else {

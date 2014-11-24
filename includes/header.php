@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,15 +16,22 @@
 	</select>
         <input type="text" name="searchStr" id="search_input">
 	<button name="searchBtn" id="searchButton">Search</button>
+	<button href="account_menu.php" id="signin" onclick="window.location.href='account_menu.php'">Home</button>
+<?php
+	if(!isset($_SESSION['logged_in'])) {
+?>
+
 	<button href="signin.php" id="signin" onclick="window.location.href='signin.php'">Sign in</button>
-	<button href="signup.php" id="signup" onclick="window.location.href='signup.php'">Sign up</button>
+<?php 
+	} else {
+?>
 	<button href="signout.php" id="signout" onclick="window.location.href='signout.php'">Sign out</button>
-
-
+<?php
+	}
+?>
     </div>
 
     <div class="container">
 
 <!-- The <div> will be closed in footer.php-->
-</html>
 

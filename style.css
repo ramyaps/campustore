@@ -54,7 +54,7 @@ body {
 .container{
     background:lightGray;
     width: 90%;
-
+    padding: 20px;
     /*margin: 0 auto;
     position: absolute; top: 120px; left: 300px;*/
 }
@@ -173,5 +173,13 @@ th, td {
 /**********************************************************************************/
 
 #signInSubmitBtn {
-    font-size: 50px;
+    font-size: 20px;
+}
+
+.show_table {
+    border: none;
+}
+
+.show_table td {
+    padding: 20px;
 }
