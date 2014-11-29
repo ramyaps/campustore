@@ -20,10 +20,10 @@ if (isset($_SESSION['logged_in'])) {
     //Fetching the user id from the session variable
     $buyer_id = $_SESSION['user_id'];
 
-    //If the action is BUY, fetch the product id from $_GET
-    if (isset($_GET['id']) && $action == 'buy' ) {
-        $id = $_GET['id'];
-        $quantity = $_GET['quantity'];
+    //If the action is BUY, fetch the product id from $_POST
+    if (isset($_POST['id']) && $action == 'buy' ) {
+        $id = $_POST['id'];
+        $quantity = $_POST['quantity'];
         $product_data = $product->fetch_data($id);          //fetch product data
         $image = "./uploads/icons/".$product_data['icon'];  // get the file path of image icon
 
@@ -40,6 +40,7 @@ if (isset($_SESSION['logged_in'])) {
 
         $price = $quantity * $product_data['price'];
         $seller_data = $user->fetch_user($product_data['user_id']);   //fetch the seller details
+        $feedback = $user->fetch_feedback($product_data['user_id']);  // fetch seller feedback
 
         //if the product is still available
         if($product_data['order_status'] === 'Available' && ($quantity <= $quantity_available)) {
@@ -94,6 +95,7 @@ if (isset($_SESSION['logged_in'])) {
         $product_data = $product->fetch_data($order_data['product_id']);
         $image = "./uploads/icons/".$product_data['icon'];
         $seller_data = $user->fetch_user($product_data['user_id']);   //fetch the seller details
+        $feedback = $user->fetch_feedback($product_data['user_id']);  // fetch seller feedback
 
         //Update the status as AVAILABLE in product table
         $order_data = $query->fetch(PDO::FETCH_ASSOC);
@@ -122,11 +124,18 @@ if (isset($_SESSION['logged_in'])) {
     </div>
     <div class="display_inline center_column text_wrap">
         <h3><?php echo $product_data['name']?></h3>
-        <p>Seller: &nbsp;<a href=""><?php echo $seller_data['first_name']." ".$seller_data['last_name'] ?></a> </p>
+        <p>Seller: &nbsp;<span style="color: indianred"><?php echo $seller_data['first_name']." ".$seller_data['last_name'] ?></span></p>
+        <p><em>User Feedback&nbsp;<meter value="<?php echo $feedback ?>" min="0" max="5"></meter><?php echo " ".$feedback."/5.0" ?></em></p>
+        <form method="post" action="message.php">
+            <input type="hidden" name="receiver_id" value="<?php echo $seller_data['id']?>">
+            Contact Seller <input type="submit" name="msg_submit" value="Send Message">
+        </form>
     </div>
     <br><br>
-    &nbsp;&nbsp;&nbsp;&nbsp;View <a href="order_detail.php?order_id=<?php echo $order_id ?>">Order</a> detail.<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;Go <a href="index.php">Back</a>
+    <div class="left_column display_inline">
+        &nbsp;&nbsp;&nbsp;&nbsp;View <a href="order_detail.php?order_id=<?php echo $order_id ?>">Order</a> detail.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;Go <a href="index.php">Back</a>
+    </div>
 <?php
     include_once("includes/footer.php");
 } else{

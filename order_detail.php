@@ -23,9 +23,10 @@ if(isset($_SESSION['logged_in'])) {
         $buyer_data = $user->fetch_user($order_data['buyer_id']);          //fetch buyer details
         $product_data = $product->fetch_data($order_data['product_id']);   //fetch product details
         $seller_data = $user->fetch_user($product_data['user_id']);        //fetch seller details
+        $feedback = $user->fetch_feedback($product_data['user_id']);       // fetch seller feedback
 
         $page_title = "Webshelf- Order Detail";
-        include('includes/header.php');
+        include_once('includes/header.php');
 
 ?>
 
@@ -64,14 +65,19 @@ if(isset($_SESSION['logged_in'])) {
         </div>
         <div class="display_inline center_column text_wrap">
             <h3><?php echo $product_data['name']?></h3>
-            <p>Seller: &nbsp;<a href=""><?php echo $seller_data['first_name']." ".$seller_data['last_name'] ?></a> </p>
-            <p>Contact: <?php echo $seller_data['phone'] ?></p>
+            <p>Seller: &nbsp;<?php echo $seller_data['first_name']." ".$seller_data['last_name'] ?></p>
+<!--            <p>Contact: --><?php //echo $seller_data['phone'] ?><!--</p>-->
             <p>Email: <?php echo $seller_data['email']?></p>
+            <form method="post" action="message.php">
+                <input type="hidden" name="receiver_id" value="<?php echo $seller_data['id']?>">
+                Contact Seller <input type="submit" name="msg_submit" value="Send Message">
+            </form>
         </div>
         <br><br>
     </div><br>
 
     <?php
+        print("<div class='left_column display_inline'>");
         //Users can cancel those orders that are not completed yet. And they can provide feedback for those orders only
         //that are delivered and completed.
         //If the order status is still "ORDERED", provide user a link to cancel it.
@@ -82,7 +88,7 @@ if(isset($_SESSION['logged_in'])) {
         elseif($order_data['status'] == 'Delivered') {
         print("&nbsp;&nbsp;&nbsp;&nbsp;<a href='feedback.php'>Leave feedback</a><br>");
         }
-
+        print("</div>");
     include('includes/footer.php');
     }
 } else {                                                      
