@@ -26,7 +26,10 @@ if (isset($_GET['id'])) {
     //fetch the image file-path for the given product id from picture table
     $image = "./uploads/icons/".$data['icon'];
     //fetch seller data
-    $seller = $user->fetch_user( $data['user_id']);
+    $seller = $user->fetch_user( $data['user_id'] );
+
+    //fetch seller feedback
+    $feedback = $user->fetch_feedback( $data['user_id'] );
 
     $page_title = "Webshelf-Product details: ".$data['name'];
     include_once('includes/header.php');
@@ -39,17 +42,16 @@ if (isset($_GET['id'])) {
     <div class="display_inline center_column text_wrap">
         <h3><?php echo $data['name']?></h3>
         <p><?php echo $data['description']?></p>
-        <p>Sold by &nbsp;<a href=""><?php echo $seller['first_name']." ".$seller['last_name'] ?></a> </p>
-        <em>User Feedback </em><br><br>
+        <p>Sold by: &nbsp;<span style="color: indianred"><?php echo $seller['first_name']." ".$seller['last_name'] ?></span></p>
+        <em>User Feedback&nbsp;<meter value="<?php echo $feedback ?>" min="0" max="5"></meter><?php echo " ".$feedback."/5.0" ?></em><br><br>
         <p>Price: &nbsp;&dollar; <?php echo $data['price'] ?> </p>
         <p>Quantity Available: &nbsp;<?php echo $quantity_available?> </p><br><br>
         <?php
             if($data['order_status'] === 'Available' && ($quantity_available > 0)) { ?>
-                <form action="order.php?id" method="get">
+                <form action="order.php?action=buy" method="post">
                     <input type="hidden" name="id" value=<?php echo $data['id']; ?>>
-                    <input type="hidden" name="action" value="buy">
                     Enter Quantity: <input type="number" name="quantity" min="1" max= <?php echo $quantity_available ?> required>&nbsp;&nbsp;
-                    <input type="submit" name="submit" value="Order">
+                    <input type="submit" name="ord_submit" value="Order">
                 </form>
         <?php
             } else { ?>
@@ -57,7 +59,10 @@ if (isset($_GET['id'])) {
         <?php
             }
         ?>
-        <br><a href="index.php">Back</a>
+        <br><form method="post" action="message.php">
+                <input type="hidden" name="receiver_id" value="<?php echo $seller['id']?>">
+                Contact Seller <input type="submit" name="msg_submit" value="Send Message">
+            </form><a href="message.php?to="></a><a href="index.php">Back</a>
     </div>
     <br>
 </div>

@@ -4,6 +4,7 @@ session_start();
 //include_once 'includes/footer.php';
 if(isset($_SESSION['logged_in'])) {
     $user_id = $_SESSION['user_id'];
+    $page_title = "Account Menu";
     include_once('includes/header.php');
 ?>
 
@@ -21,6 +22,7 @@ if(isset($_SESSION['logged_in'])) {
     <div class="box menu">
         <h3>Settings</h3>
         <p><a href="order_history.php">Change Account Settings</a></p>
+        <p><a href="message_box.php">View Mailbox</a></p>
     </div>
 <?php
     include_once("includes/footer.php");

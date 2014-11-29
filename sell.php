@@ -99,7 +99,7 @@ if (isset($_SESSION['logged_in'])) {
 $page_title = 'WebShelf-Upload Product to catalog';
 include_once('includes/header.php');
 ?>
-        <br>&nbsp;&nbsp;<a href="account_menu.php" id="account">Your Account</a>
+<br xmlns="http://www.w3.org/1999/html">&nbsp;&nbsp;<a href="account_menu.php" id="account">Your Account</a>
         <div class="box">
             <h3 class="center_align"> Upload Product for sale </h3>
             <em class="comments">*NOTE: No leading and trailing white-spaces allowed</em><br><br>
@@ -108,7 +108,7 @@ include_once('includes/header.php');
                 <br /><br />
             <?php } ?>
             <form method="post" action="sell.php" name="upload_item" enctype="multipart/form-data" >
-                Category&nbsp;&nbsp;<select name="category" id="category" onchange="changeDisplay()">
+                <label class="input_label">Category</label>&nbsp;&nbsp;<select name="category" id="category" onchange="changeDisplay()">
                     <?php
                     $query = $pdo->prepare("SELECT id, name FROM category");
                     $query->execute() or die(print_r($query->errorInfo(), true));
@@ -120,32 +120,32 @@ include_once('includes/header.php');
                 </select>
                 <br><br>
 
-                <label>Name&nbsp;&nbsp;<input type="text" name="name" size="50" required/></label><br><br>
+                <label class="input_label">Name</label>&nbsp;&nbsp;<input type="text" name="name" value="<?php isset($name) ? $name : ""; ?>" required/><br><br>
                 <div id='book_details'>
-                    <label>Author&nbsp;&nbsp;<input type='text' name='author' size='50' pattern='^[A-Za-z][A-Za-z\s]*[A-Za-z]$'></label><br><br>
-                    <label>Edition&nbsp;&nbsp;<input type='text' name='edition' size='50' pattern="^\w[\w\s]*[\w]$"/></label><br><br>
-                    <label>Year&nbsp;&nbsp;<input type='text' name='year' size='50' pattern='[1-9][0-9]{3}'/>
+                    <label class="input_label">Author</label>&nbsp;&nbsp;<input type='text' name='author'  pattern='^[A-Za-z][A-Za-z\s]*[A-Za-z]$'><br><br>
+                    <label class="input_label">Edition</label>&nbsp;&nbsp;<input type='text' name='edition'  pattern="^\w[\w\s]*[\w]$"/><br><br>
+                    <label class="input_label">Year</label>&nbsp;&nbsp;<input type='text' name='year' pattern='[1-9][0-9]{3}'/>
                     <em class='comments'>*YYYY</em>
-                    </label><br><br>
+                    <br><br>
                 </div>
 
-                <label>Description<br>
-                    <textarea name="description" rows="5" cols="60" required placeholder="Enter Description here.."></textarea>
-                </label><br><br>
+                <label class="input_label">Quantity</label>&nbsp;&nbsp;
+                <input type="text" name="quantity" pattern="[1-9]\d*"  value="1" required/>
+                <br><br>
 
-                <label>Quantity&nbsp;&nbsp;
-                    <input type="text" name="quantity" pattern="[1-9]\d*"  value="1" required/>
-                </label><br><br>
+                <label class="input_label">Price</label>&nbsp;&nbsp;
+                <input type="text" name="price" pattern="[1-9]\d*[.]\d{2}" required/>
+                <em class="comments">*##.## (Numbers only) </em>
+                <br><br>
 
-                <label>Price&nbsp;&nbsp;
-                    <input type="text" name="price" pattern="[1-9]\d*[.]\d{2}" required/>
-                    <em class="comments">*##.## (Numbers only) </em>
-                </label><br><br>
+                <label class="input_label">Description</label><br>
+                    <textarea name="description" rows="6" cols="50" required placeholder="Enter Description here.."></textarea>
+                <br><br>
 
-                <label>Picture&nbsp;&nbsp;
+                <label class="input_label">Picture</label>&nbsp;&nbsp;
                     <input type="file" name="picture"/><br>
                     <em class="comments">*File size must be less than 256kb</em>
-                </label><br><br>
+                <br><br>
 
                 <input type="submit" name="submit" value="Upload"/>
                 <input type="reset" name="reset" value="Cancel"/>

@@ -150,6 +150,10 @@ th, td {
     border: 2px solid black;
     padding: 8px;
 }
+
+.input_label {
+    width: 10em; float: left;
+}
 /* END OF CSS Style for Sell.php, product_detail.php, order.php, order_detail.php */
 /**********************************************************************************/
 
