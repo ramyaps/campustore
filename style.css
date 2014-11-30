@@ -37,13 +37,16 @@ body {
 #signup {
     font-size: 20px;
 }
+#signup_submit {
+    font-size: 18px;
+}
 #signout {
     font-size: 20px;
 }
 .form{
-    text-align: center;
+   /* text-align: center;*/
+    margin-left: 30%;
     font-size: 16px;
-    margin: 0 auto auto auto;
 }
 
 .footer {
@@ -67,6 +70,11 @@ a:link, a:visited {
 
 a:hover {
     color:#777;
+}
+
+.error_info {
+    color:#aa0000;
+    text-align:center;
 }
 
 /* END OF CSS Style for global pages*/
@@ -199,3 +207,5 @@ th, td {
 .show_table td {
     padding: 20px;
 }
+
+

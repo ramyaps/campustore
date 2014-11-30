@@ -43,12 +43,11 @@ if (isset($_POST['email'], $_POST['password'])) {
 ?>
 	<br /><br />
 	<div class="box">
+	<h3 class="center_align">Sign in<h3>
 	<?php if (isset($error)) {?>
-	    <small style="color:#aa0000;"><?php echo $error;?>
-	    <br/></small>
+	    <p class="error_info"><?php echo $error;?></p>
 	<?php } ?>
      <div class="form">
-	<h3 class="center_align">Sign in<h3>
 	<form action="signin.php" method="post" autocomplete="off">
 	     <label>Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
 	     <input type="text" name="email" placeholder="Email">
