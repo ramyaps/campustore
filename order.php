@@ -120,7 +120,7 @@ if (isset($_SESSION['logged_in'])) {
 ?>
 <!--Display the details    -->
     <div class="left_column display_inline">
-        <img height="150px" width="100px" src="<?php echo $image?>" alt="product image" class="product">
+        <img height="auto" width="100px" src="<?php echo $image?>" alt="product image" class="product">
     </div>
     <div class="display_inline center_column text_wrap">
         <h3><?php echo $product_data['name']?></h3>
