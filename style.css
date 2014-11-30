@@ -116,6 +116,12 @@ em{
     color: red;
 }
 
+.bold {
+    font-weight: bold;
+    font-family: helvetica;
+
+}
+
 ul.nostyle_horizontal li {
     display: inline-block;
     vertical-align: top;

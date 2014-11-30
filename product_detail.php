@@ -35,34 +35,41 @@ if (isset($_GET['id'])) {
     include_once('includes/header.php');
 ?>
 
-<div id="display_product">
+<div id="display_product" xmlns="http://www.w3.org/1999/html">
     <div class="left_column display_inline">
-        <img height="300px" width="200px" src="<?php echo $image ?>" alt="product image" class="product">
+        <img height=auto width=220px src="<?php echo $image ?>" alt="product image" class="product">
+        <p><input type='button' value='Back' onclick='history.go(-1)'></p>
     </div>
+
     <div class="display_inline center_column text_wrap">
         <h3><?php echo $data['name']?></h3>
         <p><?php echo $data['description']?></p>
         <p>Sold by: &nbsp;<span style="color: indianred"><?php echo $seller['first_name']." ".$seller['last_name'] ?></span></p>
         <em>User Feedback&nbsp;<meter value="<?php echo $feedback ?>" min="0" max="5"></meter><?php echo " ".$feedback."/5.0" ?></em><br><br>
-        <p>Price: &nbsp;&dollar; <?php echo $data['price'] ?> </p>
+        <p>Price: &nbsp;&dollar; <?php echo number_format($data['price'],2) ?> </p>
         <p>Quantity Available: &nbsp;<?php echo $quantity_available?> </p><br><br>
+
+    </div>
+
+    <div class="right_column display_inline text_wrap">
+        <br><br>
         <?php
-            if($data['order_status'] === 'Available' && ($quantity_available > 0)) { ?>
-                <form action="order.php?action=buy" method="post">
-                    <input type="hidden" name="id" value=<?php echo $data['id']; ?>>
-                    Enter Quantity: <input type="number" name="quantity" min="1" max= <?php echo $quantity_available ?> required>&nbsp;&nbsp;
-                    <input type="submit" name="ord_submit" value="Order">
-                </form>
+        if($data['order_status'] === 'Available' && ($quantity_available > 0)) { ?>
+            <form action="order.php?action=buy" method="post">
+                <input type="hidden" name="id" value=<?php echo $data['id']; ?>>
+                Enter Quantity: <input type="number" name="quantity" min="1" max= <?php echo $quantity_available ?> required>&nbsp;&nbsp;
+                <input type="submit" name="ord_submit" value="Order">
+            </form>
         <?php
-            } else { ?>
-                <p class="comments">Not available.</p>
+        } else { ?>
+            <p class="comments">Not available.</p>
         <?php
-            }
+        }
         ?>
         <br><form method="post" action="message.php">
-                <input type="hidden" name="receiver_id" value="<?php echo $seller['id']?>">
-                Contact Seller <input type="submit" name="msg_submit" value="Send Message">
-            </form><a href="message.php?to="></a><a href="index.php">Back</a>
+            <input type="hidden" name="receiver_id" value="<?php echo $seller['id']?>">
+            Contact Seller <input type="submit" name="msg_submit" value="Send Message">
+        </form>
     </div>
     <br>
 </div>
@@ -73,6 +80,5 @@ if (isset($_GET['id'])) {
     header('Location: index.php');
     exit();
 }
-
 
 ?>
