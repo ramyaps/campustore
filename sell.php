@@ -99,7 +99,7 @@ if (isset($_SESSION['logged_in'])) {
 $page_title = 'WebShelf-Upload Product to catalog';
 include_once('includes/header.php');
 ?>
-<br xmlns="http://www.w3.org/1999/html">&nbsp;&nbsp;<a href="account_menu.php" id="account">Your Account</a>
+<br xmlns="http://www.w3.org/1999/html">&nbsp;&nbsp;<a href="account_menu.php" id="account">Your Account</a>&nbsp;&gt;&nbsp;<span style='color: indianred'>Sell a product</span>
         <div class="box">
             <h3 class="center_align"> Upload Product for sale </h3>
             <em class="comments">*NOTE: No leading and trailing white-spaces allowed</em><br><br>

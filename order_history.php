@@ -18,7 +18,7 @@ if(isset($_SESSION['logged_in'])) {
 
     if(empty($filter)) {
         //fetch active orders
-        $query = $pdo->prepare("SELECT o.id, o.date_time, p.name FROM orders AS o JOIN product AS p ON o.product_id = p.id WHERE buyer_id = ? AND status = ? ORDER BY o.id");
+        $query = $pdo->prepare("SELECT o.id, o.date_time, p.name FROM orders AS o JOIN product AS p ON o.product_id = p.id WHERE buyer_id = ? AND status = ? ORDER BY o.id DESC");
         $query->bindValue(1, $user_id);
         $query->bindValue(2, 'Ordered');
         $query->execute() or die(print_r($query->errorInfo()));
@@ -28,16 +28,17 @@ if(isset($_SESSION['logged_in'])) {
     }
     elseif($filter == 'Delivered'){
         //fetch completed orders
-        $query = $pdo->prepare("SELECT o.id, o.date_time, p.name FROM orders AS o JOIN product AS p ON o.product_id = p.id WHERE buyer_id = ? AND status = ? ORDER BY o.id");
+        $query = $pdo->prepare("SELECT o.id, o.date_time, p.name, r.stars FROM ( orders AS o JOIN product AS p ON o.product_id = p.id ) LEFT OUTER JOIN review AS r ON o.id = r.order_id WHERE buyer_id = ? AND STATUS = ? ORDER BY o.id DESC");
         $query->bindValue(1, $user_id);
         $query->bindValue(2, 'Delivered');
         $query->execute() or die(print_r($query->errorInfo()));
 
         $purchase = $query->fetchAll(PDO::FETCH_ASSOC);
+
     }
     elseif($filter == 'Cancelled'){
         //fetch cancelled orders
-        $query = $pdo->prepare("SELECT o.id, o.date_time, p.name FROM orders AS o JOIN product AS p ON o.product_id = p.id WHERE buyer_id = ? AND status = ? ORDER BY o.id");
+        $query = $pdo->prepare("SELECT o.id, o.date_time, p.name FROM orders AS o JOIN product AS p ON o.product_id = p.id WHERE buyer_id = ? AND status = ? ORDER BY o.id DESC");
         $query->bindValue(1, $user_id);
         $query->bindValue(2, 'Cancelled');
         $query->execute() or die(print_r($query->errorInfo()));
@@ -50,11 +51,25 @@ if(isset($_SESSION['logged_in'])) {
     print("<a href='order_history.php'". ($filter=='' ? "style='color: indianred'>" : ">")."Active</a>&nbsp;&nbsp;&nbsp;&nbsp;");
     print("<a href='order_history.php?filter=Delivered'". ($filter=='Delivered' ? "style='color: indianred'>" : ">")."Completed</a>&nbsp;&nbsp;&nbsp;&nbsp;");
     print("<a href='order_history.php?filter=Cancelled'". ($filter=='Cancelled' ? "style='color: indianred'>" : ">")."Cancelled</a>");
-    print("<br><br><table><tr><th>Order Id</th><th>Product</th><th>Date</th></tr>");
-    foreach($purchase AS $row){
-        print("<tr>");
-        print("<td><a href='order_detail.php?order_id=".$row['id']."'>".$row['id']."</a></td><td>".$row['name']."</td><td>".$row['date_time']."</td>");
-        print("</tr>");
+    if($filter == 'Delivered') {
+        print("<br><br><table><tr><th>Order Id</th><th>Product</th><th>Date</th><th>Feedback</th></tr>");
+        foreach($purchase AS $row){
+            print("<tr>");
+            print("<td><a href='order_detail.php?order_id=".$row['id']."'>".$row['id']."</a></td><td>".$row['name']."</td><td>".$row['date_time']."</td>");
+            if(empty($row['stars'])){
+                print("<td><a href='feedback.php?order_id=".$row['id']."'>Leave feedback</a></td>");
+            }else {
+                print("<td>Reviewed</td>");
+            }
+            print("</tr>");
+        }
+    }else {
+        print("<br><br><table><tr><th>Order Id</th><th>Product</th><th>Date</th></tr>");
+        foreach($purchase AS $row){
+            print("<tr>");
+            print("<td><a href='order_detail.php?order_id=".$row['id']."'>".$row['id']."</a></td><td>".$row['name']."</td><td>".$row['date_time']."</td>");
+            print("</tr>");
+        }
     }
     print("</table>");
     print("</div>");

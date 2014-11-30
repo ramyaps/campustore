@@ -17,7 +17,7 @@ if(isset($_SESSION['logged_in'])) {
     <div class="box menu">
         <h3>Buyer Account</h3>
         <p><a href="order_history.php">View Order History</a></p>
-        <p><a href="feedback.php">Leave Feedback</a></p>
+        <p><a href="order_history.php?filter=Delivered">Leave Feedback</a></p>
     </div>
     <div class="box menu">
         <h3>Settings</h3>

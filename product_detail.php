@@ -35,9 +35,9 @@ if (isset($_GET['id'])) {
     include_once('includes/header.php');
 ?>
 
-<div id="display_product" class="container">
+<div id="display_product">
     <div class="left_column display_inline">
-        <img height="350px" width="250px" src="<?php echo $image?>" alt="product image" class="product">
+        <img height="300px" width="200px" src="<?php echo $image ?>" alt="product image" class="product">
     </div>
     <div class="display_inline center_column text_wrap">
         <h3><?php echo $data['name']?></h3>

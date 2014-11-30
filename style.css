@@ -124,12 +124,18 @@ ul.nostyle_horizontal li {
 
 .left_column {
     margin-left: 25px;
-    width: 30%;
+    width: 20%;
 }
 
 .center_column {
     width: 50%;
     margin-left: 30px;
+    position: relative;
+}
+
+.right_column {
+    margin-left: 5px;
+    width: 20%;
     position: relative;
 }
 
