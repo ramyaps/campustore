@@ -18,7 +18,13 @@ class Product {
 
 	return $query->fetch();
     }
-
+    public function fetch_by_category($cate_id) {
+	global $pdo;
+	$query = $pdo->prepare("SELECT * FROM product where category_id = ?");
+	$query->bindValue(1, $cate_id);
+	$query->execute();
+	return $query->fetchall();
+    }
     public function fetch_image($product_id){
         global $pdo;
         $query = $pdo->prepare("SELECT * FROM picture WHERE product_id = ?");

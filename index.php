@@ -1,12 +1,16 @@
 <?php
+session_start();
 include_once('includes/connection.php');
 include_once('includes/product.php');
 $page_title = "index.php";
 include('includes/header.php');
 $product = new Product();
-$data = $product->fetch_all();
-
-
+//$data = $product->fetch_all();
+$category_id = 2;
+if(isset($_GET['cate_id'])) {
+	$category_id = $_GET['cate_id'];
+}
+$data = $product->fetch_by_category($category_id);
 ?>
 	<table class="show_table">
 	    <?php 
