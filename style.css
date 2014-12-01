@@ -60,7 +60,6 @@ body {
     background:lightGray;
     margin: 0 auto;
 }
-
 a:link, a:visited {
     color: slateGray;
     text-decoration: none;
@@ -70,7 +69,6 @@ a:link, a:visited {
 a:hover {
     color:#777;
 }
-
 .error_info {
     color:#aa0000;
     text-align:center;
@@ -101,12 +99,10 @@ h3 {
     text-align: left;
     padding: 10px;
 }
-
 .logo {
     height: 98px;
     width: 175px;
 }
-
 .center_align {
     text-align: center;
 }
@@ -208,4 +204,11 @@ th, td {
     padding: 20px;
 }
 
+.page_nav {
+    text-align: center;
+}
+.page_nav > a {
+   font-size: 20px;
+   text-decoration: none;
+}
 

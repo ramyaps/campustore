@@ -15,6 +15,7 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+
 #cssmenu:after,
 #cssmenu > ul:after {
   content: ".";
@@ -42,12 +43,18 @@
 #cssmenu > ul > li {
   float: left;
 }
+#cssmenu > ul > li.bottom {
+  float: left;
+  height: 100%;
+  vertical-align: bottom;
+}
+
 
 #cssmenu.align-center > ul {
   font-size: 0;
   text-align: center;
 }
-#cssmenu.align-bottom{
+#cssmenu ul.align-bottom{
   vertical-align: bottom;
 }
 #cssmenu.align-center > ul > li {

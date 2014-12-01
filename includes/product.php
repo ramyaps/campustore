@@ -18,12 +18,25 @@ class Product {
 
 	return $query->fetch();
     }
-    public function fetch_by_category($cate_id) {
+    public function fetch_by_category($cate_id, $page_num) {
 	global $pdo;
-	$query = $pdo->prepare("SELECT * FROM product where category_id = ?");
-	$query->bindValue(1, $cate_id);
+	$ITEM_PER_PAGE = 4;
+	$offset = ($page_num - 1) * $ITEM_PER_PAGE;
+	if($cate_id == 0) { // 0 means all category
+		$query = $pdo->prepare("SELECT * FROM product limit ?,?");
+		$query->bindValue(1, (int)$offset, PDO::PARAM_INT);
+		$query->bindValue(2, (int)$ITEM_PER_PAGE, PDO::PARAM_INT);
+	} else {
+		$query = $pdo->prepare("SELECT * FROM product WHERE category_id=? LIMIT ?,?");
+		$query->bindValue(1, $cate_id);
+		$query->bindValue(2, (int)$offset, PDO::PARAM_INT);
+		$query->bindValue(3, (int)$ITEM_PER_PAGE, PDO::PARAM_INT);
+	}
 	$query->execute();
-	return $query->fetchall();
+//echo $cate_id."<br>".$offset."<br>".$ITEM_PER_PAGE."<br>end";
+	$result = $query->fetchall();
+//echo "<br>".count($result);
+	return $result;
     }
     public function fetch_image($product_id){
         global $pdo;

@@ -6,8 +6,9 @@ $page_title = "index.php";
 include('includes/header.php');
 $product = new Product();
 //$data = $product->fetch_all();
-$category_id = isset($_GET['cate_id']) ? $_GET['cate_id'] : 1;
-$data = $product->fetch_by_category($category_id);
+$category_id = isset($_GET['cate_id']) ? $_GET['cate_id'] : 0;
+$page_num = isset($_GET['page_num']) ? $_GET['page_num'] : 1;
+$data = $product->fetch_by_category($category_id, $page_num);
 ?>
 <div class="box">
 	<table class="show_table">
@@ -49,6 +50,20 @@ $data = $product->fetch_by_category($category_id);
 	     } 
 	    ?>
 	</table>
+
+<div class="page_nav">
+<?php
+if($page_num > 1) {
+	echo "<a href='index.php?cate_id=".$category_id."&page_num=".($page_num-1)."'>prev&nbsp;&nbsp;</a>";
+}
+$next_data = $product->fetch_by_category($category_id, $page_num+1);
+if(count($next_data) > 0) {
+	echo "<a href='index.php?cate_id=".$category_id."&page_num=".($page_num+1)."'>next</a>";
+}
+
+?>
+</div>
+
 </div>
 <?php 
 include('includes/footer.php');

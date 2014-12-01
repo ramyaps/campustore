@@ -30,14 +30,23 @@ if(isset($_GET['cate_id'])) {
     $query = $pdo->prepare('SELECT * FROM category');
     $query->execute();
     $categories = $query->fetchall();
-    $cate_id = isset($_SESSION['cate_id'])?$_SESSION['cate_id']:1;
+    $cate_id = isset($_SESSION['cate_id'])?$_SESSION['cate_id']:0;
 
+    $found = false;
     foreach ($categories as $item) {
 	if($item['id'] == $cate_id) {
 		echo "<li class='active'><a href='#'>".$item['name']."</a>
 			<ul>";
+		$found = true;
 		break;
-	} 
+	}
+    }
+	
+    if(!$found) {
+	echo "<li class='active'><a href='#'>All</a>
+			<ul>";
+    } else {
+	echo "<li><a onclick='update_category(0)'a>All</a></li>";
     }
 
     foreach ($categories as $item) {
@@ -48,7 +57,7 @@ if(isset($_GET['cate_id'])) {
    
 
 <li class="bottom">
-   <input type="text" name="searchStr" id="search_input" class="align-bottom">
+   <input type="text" name="searchStr" id="search_input" class="align-bottom" onfocus="toLarge(this)" onblur="toSmall(this)">
 	<button name="searchBtn" id="searchButton">Search</button>
 	<button href="account_menu.php" id="signin" onclick="window.location.href='account_menu.php'">Home</button>
 <?php
@@ -75,7 +84,14 @@ function update_category(sel) {
 	//var id = sel.value;
 	var id = sel;
 	//document.write(id);
-	window.location.href = "index.php?cate_id="+id;
+	window.location.href = "index.php?cate_id="+id+"&page_num=1";
+}
+
+function toLarge(sel) {
+//	document.getElementById(sel.id).style.width="50%";
+}
+function toSmall(sel) {
+//	document.getElementById(sel.id).style.width="10%";
 }
 </script>
  
