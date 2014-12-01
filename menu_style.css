@@ -40,15 +40,22 @@
 .bottom {
   margin-top: 30px;
 }
-#cssmenu > ul > li {
-  float: left;
-}
+/***Commented out float property ****/
+//#cssmenu > ul > li {
+//  float: left;
+//}
+
+/*** Commented out float property ***/
 #cssmenu > ul > li.bottom {
-  float: left;
+//  float: left;
   height: 100%;
   vertical-align: bottom;
 }
 
+/*** Added inline-block display to ul li ***/
+#cssmenu ul.align-bottom li {
+    display: inline-block;
+}
 
 #cssmenu.align-center > ul {
   font-size: 0;
@@ -57,6 +64,7 @@
 #cssmenu ul.align-bottom{
   vertical-align: bottom;
 }
+
 #cssmenu.align-center > ul > li {
   display: inline-block;
   float: none;
