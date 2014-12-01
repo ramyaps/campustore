@@ -21,7 +21,8 @@ if(isset($_SESSION['logged_in'])) {
     </div>
     <div class="box menu">
         <h3>Settings</h3>
-        <p><a href="order_history.php">Change Account Settings</a></p>
+        <p><a href="update_personal_info.php">Update Personal Info</a></p>
+        <p><a href="change_password.php">Change Password</a></p>
         <p><a href="message_box.php">View Mailbox</a></p>
     </div>
 <?php
