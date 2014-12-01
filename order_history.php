@@ -45,6 +45,7 @@ if(isset($_SESSION['logged_in'])) {
 
         $purchase = $query->fetchAll(PDO::FETCH_ASSOC);
     }
+    print("<div class='box'>");
     print("<div class='center_column' xmlns='http://www.w3.org/1999/html'>");
     print("<br>&nbsp;&nbsp;<a href='account_menu.php' id='account'>Your Account</a>&nbsp;&gt;&nbsp;<span style='color: indianred'>Orders</span>");
     print("<h3>List of Purchase Orders</h3>");
@@ -72,6 +73,7 @@ if(isset($_SESSION['logged_in'])) {
         }
     }
     print("</table>");
+    print("</div>");
     print("</div>");
     ?>
 
