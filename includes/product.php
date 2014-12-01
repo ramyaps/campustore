@@ -1,6 +1,7 @@
 <?php
 
 class Product {
+
     public function fetch_all() {
 	global $pdo;
 	
@@ -18,9 +19,12 @@ class Product {
 
 	return $query->fetch();
     }
+
+
+
     public function fetch_by_category($cate_id, $page_num) {
 	global $pdo;
-	$ITEM_PER_PAGE = 4;
+        $ITEM_PER_PAGE = 4;
 	$offset = ($page_num - 1) * $ITEM_PER_PAGE;
 	if($cate_id == 0) { // 0 means all category
 		$query = $pdo->prepare("SELECT * FROM product limit ?,?");
@@ -40,15 +44,20 @@ class Product {
     }
 
      // adopt mysql full-text search feature
-     public function search($keywords) {
+     public function search($keywords, $page_num) {
 	global $pdo;
-	$query = $pdo->prepare();
+	$ITEM_PER_PAGE = 4;
+	$offset = ($page_num - 1) * $ITEM_PER_PAGE;
+	
+	$query = $pdo->prepare("select * from product where match(name, description) against (?) limit ?,?");
 
 	$query->bindValue(1, $keywords);
+	$query->bindValue(2, (int)$offset, PDO::PARAM_INT);
+	$query->bindValue(3, (int)$ITEM_PER_PAGE, PDO::PARAM_INT);
+
 	$query->execute();
 	return $query->fetchall();
     }
-
 
 
    public function fetch_image($product_id){

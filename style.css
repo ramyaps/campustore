@@ -28,8 +28,10 @@ body {
     font-size: 20px;
     
 }
-
-#searchButton {
+.searchButton {
+    font-size: 20px;
+}
+input[type="submit"] {
     font-size: 20px;
 }
 #signin {
@@ -214,3 +216,6 @@ th, td {
    text-decoration: none;
 }
 
+.search_form {
+   display: inline-block;
+}

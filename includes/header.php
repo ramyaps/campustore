@@ -57,9 +57,15 @@ if(isset($_GET['cate_id'])) {
    
 
 <li class="bottom">
-   <input type="text" name="searchStr" id="search_input" class="align-bottom" onfocus="toLarge(this)" onblur="toSmall(this)">
-	<button name="searchBtn" id="searchButton">Search</button>
+   <!-- Search form -->
+   <form method="get" action="index.php" class="search_form">
+     <input type="text" name="search_str" id="search_input" class="align-bottom" onfocus="toLarge(this)" onblur="toSmall(this)"/>
+     <input type="hidden" name="action"value="search"/>
+     <button type="submit" class="searchButton" >Search</button>
+   </form>
+
 	<button href="account_menu.php" id="signin" onclick="window.location.href='account_menu.php'">Home</button>
+
 <?php
 	if(!isset($_SESSION['logged_in'])) {
 ?>
