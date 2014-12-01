@@ -10,6 +10,17 @@ class User {
 
         return $query->fetch();
     }
+    public function isEmailExist($email) {
+	global $pdo;
+	$query = $pdo->prepare('SELECT * FROM user WHERE email = ?');
+	$query->bindValue(1, $email);
+	$query->execute();
+	$result = $query->fetchall();
+	if(count($result)>=1)
+		return true;
+	else
+		return false;
+    }
 
     public function fetch_feedback($user_id){
         global $pdo;

@@ -7,14 +7,15 @@ body {
     font-family: Arial;
 }
 
-.header {
-    background:blue;
+#cssmenu {
+/*
+    background: coral;
     position: absolute;
     width:100%;
-    /*height:200px;*/
     top: 0px;
     left: 0px;
-    text-align: center;
+    vertical-align: bottom;
+    */
 }
 
 
@@ -27,8 +28,10 @@ body {
     font-size: 20px;
     
 }
-
-#searchButton {
+.searchButton {
+    font-size: 20px;
+}
+input[type="submit"] {
     font-size: 20px;
 }
 #signin {
@@ -37,13 +40,17 @@ body {
 #signup {
     font-size: 20px;
 }
+#signup_submit {
+    font-size: 18px;
+}
 #signout {
     font-size: 20px;
 }
 .form{
-    text-align: center;
+   /* text-align: center;*/
+    margin-left: 35%;
+    margin-bottom: 10%;
     font-size: 16px;
-    margin: 0 auto auto auto;
 }
 
 .footer {
@@ -53,12 +60,8 @@ body {
 }
 .container{
     background:lightGray;
-    width: 90%;
-    padding: 20px;
-    /*margin: 0 auto;
-    position: absolute; top: 120px; left: 300px;*/
+    margin: 0 auto;
 }
-
 a:link, a:visited {
     color: slateGray;
     text-decoration: none;
@@ -67,6 +70,10 @@ a:link, a:visited {
 
 a:hover {
     color:#777;
+}
+.error_info {
+    color:#aa0000;
+    text-align:center;
 }
 
 /* END OF CSS Style for global pages*/
@@ -94,12 +101,10 @@ h3 {
     text-align: left;
     padding: 10px;
 }
-
 .logo {
-    height: 115px;
+    height: 98px;
     width: 175px;
 }
-
 .center_align {
     text-align: center;
 }
@@ -158,6 +163,8 @@ table {
     border-collapse: collapse;
 }
 
+
+
 th, td {
     border: 2px solid black;
     padding: 8px;
@@ -197,5 +204,18 @@ th, td {
 }
 
 .show_table td {
+    border: none;
     padding: 20px;
+}
+
+.page_nav {
+    text-align: center;
+}
+.page_nav > a {
+   font-size: 20px;
+   text-decoration: none;
+}
+
+.search_form {
+   display: inline-block;
 }

@@ -34,7 +34,7 @@ if (isset($_GET['id'])) {
     $page_title = "Webshelf-Product details: ".$data['name'];
     include_once('includes/header.php');
 ?>
-
+<div class="box">
 <div id="display_product" xmlns="http://www.w3.org/1999/html">
     <div class="left_column display_inline">
         <img height=auto width=220px src="<?php echo $image ?>" alt="product image" class="product">
@@ -73,7 +73,7 @@ if (isset($_GET['id'])) {
     </div>
     <br>
 </div>
-
+</div>
 <?php
     include('includes/footer.php');
 } else {

@@ -6,12 +6,17 @@ $page_title = "index.php";
 include('includes/header.php');
 $product = new Product();
 //$data = $product->fetch_all();
-$category_id = 2;
-if(isset($_GET['cate_id'])) {
-	$category_id = $_GET['cate_id'];
+$category_id = isset($_GET['cate_id']) ? $_GET['cate_id'] : 0;
+$page_num = isset($_GET['page_num']) ? $_GET['page_num'] : 1;
+if(isset($_GET['action']) and $_GET['action'] == 'search') {
+	$keywords = $_GET['search_str'];
+	$data = $product->search($keywords, $page_num);
+} else {
+	$data = $product->fetch_by_category($category_id, $page_num);
 }
-$data = $product->fetch_by_category($category_id);
+
 ?>
+<div class="box">
 	<table class="show_table">
 	    <?php 
 		$MAX_COLUMN = 4;
@@ -51,6 +56,26 @@ $data = $product->fetch_by_category($category_id);
 	     } 
 	    ?>
 	</table>
+
+<div class="page_nav">
+<?php
+if($page_num > 1) {
+	echo "<a href='index.php?cate_id=".$category_id."&page_num=".($page_num-1)."'>prev&nbsp;&nbsp;</a>";
+}
+
+if(isset($_GET['action']) and $_GET['action'] == 'search') {
+	$next_data = $product->search($keywords, $page_num+1);
+} else {
+	$next_data = $product->fetch_by_category($category_id, $page_num+1);
+}
+if(count($next_data) > 0) {
+	echo "<a href='index.php?cate_id=".$category_id."&page_num=".($page_num+1)."'>next</a>";
+}
+
+?>
+</div>
+
+</div>
 <?php 
 include('includes/footer.php');
 ?>
