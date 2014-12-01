@@ -54,7 +54,7 @@ if (isset($_POST['email'], $_POST['nick_name'], $_POST['first_name'], $_POST['la
 	<div class="form">
 	<form action="signup.php" method="post" autocomplete="off">
 	     <label>Email</label>
-	     <input type="email" name="email" placeholder="xxx@xxx.com" value="<?php echo $_POST['email'];?>" pattern="^[a-z0-9A-Z._%+-]+@[a-z0-9A-Z.-]+\.edu$">
+	     <input type="email" name="email" placeholder="xxx@xxx.edu" value="<?php echo $_POST['email'];?>" pattern="^[a-z0-9A-Z._%+-]+@[a-z0-9A-Z.-]+\.edu$">
 	     <br><br>
 	     <label>Password</label>
 	     <input type="password" name="password" placeholder="Password" value="<?php echo $_POST['password'];?>">

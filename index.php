@@ -6,12 +6,10 @@ $page_title = "index.php";
 include('includes/header.php');
 $product = new Product();
 //$data = $product->fetch_all();
-$category_id = 2;
-if(isset($_GET['cate_id'])) {
-	$category_id = $_GET['cate_id'];
-}
+$category_id = isset($_GET['cate_id']) ? $_GET['cate_id'] : 1;
 $data = $product->fetch_by_category($category_id);
 ?>
+<div class="box">
 	<table class="show_table">
 	    <?php 
 		$MAX_COLUMN = 4;
@@ -51,6 +49,7 @@ $data = $product->fetch_by_category($category_id);
 	     } 
 	    ?>
 	</table>
+</div>
 <?php 
 include('includes/footer.php');
 ?>

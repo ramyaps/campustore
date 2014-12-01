@@ -57,7 +57,6 @@ function update_category(sel) {
 ?>
     </div>
 
-    <div class="container">
 
 <!-- The <div> will be closed in footer.php-->
 
