@@ -31,10 +31,10 @@ if(isset($_SESSION['logged_in'])) {
         $query->bindValue(5, $stars);
         $query->execute() or die(print_r($query->errorInfo()));
 
-        print("<div class='container'>");
+        print("<br>&nbsp;&nbsp;<a href='account_menu.php' id='account'>Your Account</a>&nbsp;&gt;&nbsp;");
+        print("<a href='order_history.php?filter=Delivered'>Orders</a>&nbsp;&gt;&nbsp;<span style='color: indianred'>Leave Feedback </span>");
+        print("<div class='box'>");
         print("<div class='center_column'>");
-            print("<br>&nbsp;&nbsp;<a href='account_menu.php' id='account'>Your Account</a>&nbsp;&gt;&nbsp;");
-            print("<a href='order_history.php?filter=Delivered'>Orders</a>&nbsp;&gt;&nbsp;<span style='color: indianred'>Leave Feedback </span>");
             print("<br><h3 class='center_align'>Feedback Updated Successfully!! </h3>");
             print("<p class='center_align'><a href='order_detail.php?order_id=$order_id'><input type='button' value='View Feedback'></a></p>");
         print("</div></div>");
@@ -52,12 +52,10 @@ if(isset($_SESSION['logged_in'])) {
     $reviewer = $user->fetch_user($reviewer_id);
     $seller = $user->fetch_user($product_data['user_id']);
 
-
-    print("<div class='container'>");
-    print("<div class='center_column'>");
     print("<br>&nbsp;&nbsp;<a href='account_menu.php' id='account'>Your Account</a>&nbsp;&gt;&nbsp;");
     print("<a href='order_history.php?filter=Delivered'>Orders</a>&nbsp;&gt;&nbsp;<span style='color: indianred'>Leave Feedback </span>");
     print("<div class='box'>");
+        print("<div class='center_column'>");
         print("<form method='post' action='feedback.php?order_id=$order_id&action=review'>");
             print("<p><span style='color: coral;font-weight: bold'> Order Being reviewed:</span></p>");
             print("<div><label class='input_label'>Order Number: </label> <span>$order_id</span></div><br>");
@@ -70,7 +68,7 @@ if(isset($_SESSION['logged_in'])) {
             print("<div><textarea rows='8' cols='50' name='content' maxlength='5000' required></textarea></div>");
             print("<div><input type='submit' name='review' value='Submit feedback'><input type='reset' value='Clear'><input type='button' value='Back' onclick='history.go(-1)'></div>");
         print("</form>");
-    print("</div></div></div>");
+    print("</div></div>");
 
 include('includes/footer.php');
 } else {

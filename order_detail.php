@@ -44,33 +44,33 @@ if(isset($_SESSION['logged_in'])) {
 
 ?>
 
-        <br xmlns="http://www.w3.org/1999/html">
-        &nbsp;&nbsp;<a href="account_menu.php" id="account">Your Account</a>&nbsp;&gt;&nbsp;
-        <a href="order_history.php">Orders</a>&nbsp;&gt;&nbsp;<span style="color: indianred">Order Details </span>
-        <br>
-        <ul class="nostyle_horizontal box">
-            <li>
-                <span class="bold">Order placed on</span><br>
-                <?php print($order_data['date_time']); ?>
-            </li>
-            <li>
-                <span class="bold">Order number</span><br>
-                <?php print($order_data['id']); ?>
-            </li>
-            <li>
-                <span class="bold">Quantity</span><br>
-                <?php print($order_data['quantity']); ?>
-            </li>
-            <li>
-                <span class="bold">Total Price</span><br>
-                <?php print("$ ".$order_data['total_price']); ?>
-            </li>
-            <li>
-                <span class="bold">Ordered by</span><br>
-                <?php print($buyer_data['first_name']." ".$buyer_data['last_name'] ); ?>
-            </li>
-        </ul><br>
-
+    <br xmlns="http://www.w3.org/1999/html">
+    &nbsp;&nbsp;<a href="account_menu.php" id="account">Your Account</a>&nbsp;&gt;&nbsp;
+    <a href="order_history.php">Orders</a>&nbsp;&gt;&nbsp;<span style="color: indianred">Order Details </span>
+    <br>
+    <ul class="nostyle_horizontal box">
+        <li>
+            <span class="bold">Order placed on</span><br>
+            <?php print($order_data['date_time']); ?>
+        </li>
+        <li>
+            <span class="bold">Order number</span><br>
+            <?php print($order_data['id']); ?>
+        </li>
+        <li>
+            <span class="bold">Quantity</span><br>
+            <?php print($order_data['quantity']); ?>
+        </li>
+        <li>
+            <span class="bold">Total Price</span><br>
+            <?php print("$ ".$order_data['total_price']); ?>
+        </li>
+        <li>
+            <span class="bold">Ordered by</span><br>
+            <?php print($buyer_data['first_name']." ".$buyer_data['last_name'] ); ?>
+        </li>
+    </ul>
+    <div class='box'>
         <div class="left_column display_inline">
             <p><span style="color: coral;font-weight: bold">Order Status:</span> <?php echo $order_data['status']?></p>
             <img height="auto" width="100px" src="<?php echo $image?>" alt="product image" class="product">
@@ -120,6 +120,7 @@ if(isset($_SESSION['logged_in'])) {
             print("<a href='#' onclick='toggleCancel(0);'>No</a></p>");
         print("</div>");
 ?>
+    </div>
         <!-- Script to confirm order cancellation -->
         <script>
             function toggleCancel(i){

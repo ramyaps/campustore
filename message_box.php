@@ -31,22 +31,24 @@ if(isset($_SESSION['logged_in'])) {
 
         $list = $query->fetchAll(PDO::FETCH_ASSOC);
     }
-    print("<div class='center_column'>");
     print("<br>&nbsp;&nbsp;<a href='account_menu.php' id='account'>Your Account</a>&nbsp;&gt;&nbsp;<span style='color: indianred'>Message box</span>");
     if(!empty($success)){
         print("<br><h3 class='center_align'>$success</h3>");
     }
-    print("<p><a href='message_box.php?filter=inbox'". (($filter=='' || $filter=='inbox') ? "style='color: indianred'>" : ">")."Inbox</a>&nbsp;&nbsp;&nbsp;&nbsp;");
-    print("<a href='message_box.php?filter=sent'". ($filter=='sent' ? "style='color: indianred'>" : ">")."Sent</a></p>");
-    print("<br><br><table><tr><th>".($filter=='sent' ? "To" : "From")."</th><th>Title</th><th>Date</th></tr>");
-    foreach($list AS $row){
-        print("<tr>");
-        print("<td".(($row['status']=='UNREAD' && $filter!='sent') ? " style='font-weight: bold'>" : ">").$row['first_name']." ".$row['last_name']."</td>");
-        print("<td".(($row['status']=='UNREAD' && $filter!='sent') ? " style='font-weight: bold'>" : ">")."<a href='read_message.php?msg_id=".$row['id']."'>".$row['title']."</a></td>");
-        print("<td>".$row['date_time']."</td>");
-        print("</tr>");
-    }
-    print("</table>");
+    print("<div class='box'>");
+        print("<div class='center_column'>");
+            print("<p ><a href='message_box.php?filter=inbox'". (($filter=='' || $filter=='inbox') ? "style='color: indianred'>" : ">")."Inbox</a>&nbsp;&nbsp;&nbsp;&nbsp;");
+            print("<a href='message_box.php?filter=sent'". ($filter=='sent' ? "style='color: indianred'>" : ">")."Sent</a></p>");
+            print("<br><table><tr><th>".($filter=='sent' ? "To" : "From")."</th><th>Title</th><th>Date</th></tr>");
+            foreach($list AS $row){
+                print("<tr>");
+                print("<td".(($row['status']=='UNREAD' && $filter!='sent') ? " style='font-weight: bold'>" : ">").$row['first_name']." ".$row['last_name']."</td>");
+                print("<td".(($row['status']=='UNREAD' && $filter!='sent') ? " style='font-weight: bold'>" : ">")."<a href='read_message.php?msg_id=".$row['id']."'>".$row['title']."</a></td>");
+                print("<td>".$row['date_time']."</td>");
+                print("</tr>");
+            }
+            print("</table>");
+        print("</div>");
     print("</div>");
     include('includes/footer.php');
 }

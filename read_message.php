@@ -36,10 +36,12 @@ if(isset($_SESSION['logged_in'])) {
         $reply_to = $message['receiver_id'];
     }
 
-    print("<div class='center_column'>");
     print("<br>&nbsp;&nbsp;<a href='account_menu.php' id='account'>Your Account</a>&nbsp;&gt;&nbsp;");
     print("<a href='message_box.php?filter=$filter'>Message Box</a>&nbsp;&gt;&nbsp;");
     print("<span style='color: indianred'>Read Message</span><br><br>");
+    print("<div class='box'>");
+    print("<div class='center_column'>");
+
     print("<form method='post' action='message.php'>");
     print("<div><label class='input_label'>From:</label><span>".$sender['first_name']." ".$sender['last_name']."</span> </div><br>");
     print("<div><label class='input_label'>To:</label><span>".$receiver['first_name']." ".$receiver['last_name']."</span> </div><br>");
@@ -51,6 +53,7 @@ if(isset($_SESSION['logged_in'])) {
     print("<input type='submit' name='msg_submit' value='Reply'>");
     print("<a href='message_box.php?filter=$filter'><input type='button' value='Back'></a>");
     print("</form>");
+    print("</div>");
     print("</div>");
     include('includes/footer.php');
 }

@@ -119,6 +119,7 @@ if (isset($_SESSION['logged_in'])) {
     }
 ?>
 <!--Display the details    -->
+<div class='box'>
     <div class="left_column display_inline">
         <img height="auto" width="100px" src="<?php echo $image?>" alt="product image" class="product">
     </div>
@@ -136,6 +137,7 @@ if (isset($_SESSION['logged_in'])) {
         &nbsp;&nbsp;&nbsp;&nbsp;View <a href="order_detail.php?order_id=<?php echo $order_id ?>">Order</a> detail.<br>
         &nbsp;&nbsp;&nbsp;&nbsp;Go <a href="index.php">Back</a>
     </div>
+</div>
 <?php
     include_once("includes/footer.php");
 } else{
