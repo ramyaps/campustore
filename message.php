@@ -50,6 +50,10 @@ if(isset($_SESSION['logged_in'])){
         header("Location: message_box.php?filter=sent&success=1");
     }
 //    else {
+    print("<br>&nbsp;&nbsp;<a href='account_menu.php' id='account'>Your Account</a>&nbsp;&gt;&nbsp;");
+    print("<a href='message_box.php?filter=sent'>Message Box</a>&nbsp;&gt;&nbsp;");
+    print("<span style='color: indianred'>Send Message</span><br><br>");
+    print("<div class='box'>");
         print("<div class='center_column'>");
         print("<p><span style='color: indianred'>Send Message</span></p>");
         print("<form method='post' action=message.php?action=send>");
@@ -66,6 +70,7 @@ if(isset($_SESSION['logged_in'])){
         print("<input type='button' value='Back' onclick='history.go(-1)'></p>");
         print("</form>");
         print("</div>");
+    print("</div>");
 //    }
     include_once("includes/footer.php");
 }else{

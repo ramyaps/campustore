@@ -45,9 +45,11 @@ if(isset($_SESSION['logged_in'])) {
 
         $purchase = $query->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    print("<br>&nbsp;&nbsp;<a href='account_menu.php' id='account'>Your Account</a>&nbsp;&gt;&nbsp;<span style='color: indianred'>Orders</span>");
     print("<div class='box'>");
     print("<div class='center_column' xmlns='http://www.w3.org/1999/html'>");
-    print("<br>&nbsp;&nbsp;<a href='account_menu.php' id='account'>Your Account</a>&nbsp;&gt;&nbsp;<span style='color: indianred'>Orders</span>");
+
     print("<h3>List of Purchase Orders</h3>");
     print("<a href='order_history.php'". (($filter=='' || $filter=='Ordered') ? "style='color: indianred'>" : ">")."Active</a>&nbsp;&nbsp;&nbsp;&nbsp;");
     print("<a href='order_history.php?filter=Delivered'". ($filter=='Delivered' ? "style='color: indianred'>" : ">")."Completed</a>&nbsp;&nbsp;&nbsp;&nbsp;");
