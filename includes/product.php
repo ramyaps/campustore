@@ -38,7 +38,20 @@ class Product {
 //echo "<br>".count($result);
 	return $result;
     }
-    public function fetch_image($product_id){
+
+     // adopt mysql full-text search feature
+     public function search($keywords) {
+	global $pdo;
+	$query = $pdo->prepare();
+
+	$query->bindValue(1, $keywords);
+	$query->execute();
+	return $query->fetchall();
+    }
+
+
+
+   public function fetch_image($product_id){
         global $pdo;
         $query = $pdo->prepare("SELECT * FROM picture WHERE product_id = ?");
         $query->bindValue(1, $product_id);
@@ -55,6 +68,5 @@ class Product {
 
 	return 0;
     }
-
 }
 ?>
