@@ -35,8 +35,7 @@ if(isset($_SESSION['logged_in'])) {
 ?>
     <br>&nbsp;&nbsp;<a href="account_menu.php" id="account">Your Account</a>&nbsp;&gt;&nbsp;<span style='color: indianred'>Update Personal Info</span>
     <div class='box'>
-        <div class="left_column"></div>
-        <div class='center_column'>
+<!--        <div class='center_column'>-->
             <h3><?php echo $heading ?></h3>
             <em class="comments">Fields marked with * are mandatory</em>
             <form  method="POST" action="update_personal_info.php?action=updateinfo">
@@ -78,8 +77,7 @@ if(isset($_SESSION['logged_in'])) {
                 </table>
             </form>
 
-        </div>
-    </div>
+<!--        </div>-->
 
     <!-- Script to validate data -->
     <script  type="text/javascript">

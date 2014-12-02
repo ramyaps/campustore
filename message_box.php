@@ -36,7 +36,7 @@ if(isset($_SESSION['logged_in'])) {
         print("<br><h3 class='center_align'>$success</h3>");
     }
     print("<div class='box'>");
-        print("<div class='center_column'>");
+//        print("<div class='center_column'>");
             print("<p ><a href='message_box.php?filter=inbox'". (($filter=='' || $filter=='inbox') ? "style='color: indianred'>" : ">")."Inbox</a>&nbsp;&nbsp;&nbsp;&nbsp;");
             print("<a href='message_box.php?filter=sent'". ($filter=='sent' ? "style='color: indianred'>" : ">")."Sent</a></p>");
             print("<br><table><tr><th>".($filter=='sent' ? "To" : "From")."</th><th>Title</th><th>Date</th></tr>");
@@ -48,7 +48,7 @@ if(isset($_SESSION['logged_in'])) {
                 print("</tr>");
             }
             print("</table>");
-        print("</div>");
+//        print("</div>");
     print("</div>");
     include('includes/footer.php');
 }
