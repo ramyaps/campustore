@@ -40,8 +40,7 @@ if(isset($_SESSION['logged_in'])) {
 ?>
     <br>&nbsp;&nbsp;<a href="account_menu.php" id="account">Your Account</a>&nbsp;&gt;&nbsp;<span style='color: indianred'>Change Password</span>
     <div class='box'>
-        <div class="left_column"></div>
-        <div class='center_column'>
+<!--        <div class='center_column'>-->
             <h3><?php echo $heading ?></h3>
             <?php if (isset($error)) {?>
                 <p class="error_info"><?php echo $error;?></p>
@@ -53,7 +52,7 @@ if(isset($_SESSION['logged_in'])) {
             <input type="submit" value="Change Password">&nbsp;<input type="reset" value="Cancel">&nbsp;
             <a href="account_menu.php"><input type="button" value="Back"></a>
         </form>
-        </div>
+<!--        </div>-->
 
 <?php
     include('includes/footer.php');

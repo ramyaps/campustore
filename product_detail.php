@@ -25,6 +25,9 @@ if (isset($_GET['id'])) {
 
     //fetch the image file-path for the given product id from picture table
     $image = "./uploads/icons/".$data['icon'];
+    if(!file_exists($image) || is_dir($image)){
+        $image = "./uploads/icons/"."default.png";
+    }
     //fetch seller data
     $seller = $user->fetch_user( $data['user_id'] );
 
@@ -37,8 +40,7 @@ if (isset($_GET['id'])) {
 <div class="box">
 <div id="display_product" xmlns="http://www.w3.org/1999/html">
     <div class="left_column display_inline">
-        <img height=auto width=220px src="<?php echo $image ?>" alt="product image" class="product">
-        <p><input type='button' value='Back' onclick='history.go(-1)'></p>
+        <div id="product_img"><img src="<?php echo $image ?>" alt="product image" class="product"></div>
     </div>
 
     <div class="display_inline center_column text_wrap">
@@ -72,6 +74,9 @@ if (isset($_GET['id'])) {
         </form>
     </div>
     <br>
+    <div class="left_column display_inline">
+        <p class="center_align"><input type='button' value='Back' onclick='history.go(-1)'></p>
+    </div>
 </div>
 </div>
 <?php
