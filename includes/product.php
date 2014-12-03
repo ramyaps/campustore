@@ -24,7 +24,7 @@ class Product {
 
     public function fetch_by_category($cate_id, $page_num) {
 	global $pdo;
-        $ITEM_PER_PAGE = 4;
+        $ITEM_PER_PAGE = 8;
 	$offset = ($page_num - 1) * $ITEM_PER_PAGE;
 	if($cate_id == 0) { // 0 means all category
 		$query = $pdo->prepare("SELECT * FROM product limit ?,?");
@@ -46,7 +46,7 @@ class Product {
      // adopt mysql full-text search feature
      public function search($keywords, $page_num) {
 	global $pdo;
-	$ITEM_PER_PAGE = 4;
+	$ITEM_PER_PAGE = 10;
 	$offset = ($page_num - 1) * $ITEM_PER_PAGE;
 	
 	$query = $pdo->prepare("select * from product where match(name, description) against (?) limit ?,?");

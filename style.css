@@ -98,6 +98,7 @@ h3 {
     background-color: white;
     padding-left: 30px; padding-right: 30px;
     padding-bottom: 10px; padding-top: 10px;
+    text-align: center;
 }
 .menu {
     position: relative;
@@ -224,6 +225,7 @@ th, td {
 .show_table td {
     border: none;
     padding: 20px;
+    text-align: left;
 }
 
 .page_nav {
