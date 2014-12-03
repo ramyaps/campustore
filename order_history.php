@@ -55,7 +55,7 @@ if(isset($_SESSION['logged_in'])) {
     print("<a href='order_history.php?filter=Delivered'". ($filter=='Delivered' ? "style='color: indianred'>" : ">")."Completed</a>&nbsp;&nbsp;&nbsp;&nbsp;");
     print("<a href='order_history.php?filter=Cancelled'". ($filter=='Cancelled' ? "style='color: indianred'>" : ">")."Cancelled</a>");
     if($filter == 'Delivered') {
-        print("<br><br><table><tr><th>Order Id</th><th>Product</th><th>Date</th><th>Feedback</th></tr>");
+        print("<table><tr><th>Order Id</th><th>Product</th><th>Date</th><th>Feedback</th></tr>");
         foreach($purchase AS $row){
             print("<tr>");
             print("<td>".$row['id']."</td><td><a href='order_detail.php?order_id=".$row['id']."'>".$row['name']."</a></td><td>".$row['date_time']."</td>");
@@ -67,7 +67,7 @@ if(isset($_SESSION['logged_in'])) {
             print("</tr>");
         }
     }else {
-        print("<br><br><table><tr><th>Order Id</th><th>Product</th><th>Date</th></tr>");
+        print("<table><tr><th>Order Id</th><th>Product</th><th>Date</th></tr>");
         foreach($purchase AS $row){
             print("<tr>");
             print("<td>".$row['id']."</td><td><a href='order_detail.php?order_id=".$row['id']."'>".$row['name']."</a></td><td>".$row['date_time']."</td>");
