@@ -59,9 +59,9 @@ if(isset($_SESSION['logged_in'])) {
     &nbsp;&nbsp;<a href="account_menu.php" id="account">Your Account</a>&nbsp;&gt;&nbsp;
     <?php
         if($profile == 'buyer') {
-            print("<a href='order_history.php'>Orders</a>&nbsp;&gt;&nbsp;");
+            print("<a href='order_history.php?filer=$filter'>Orders</a>&nbsp;&gt;&nbsp;");
         }elseif($profile == 'seller'){
-            print("<a href='sold_history.php'>Sold History</a>&nbsp;&gt;&nbsp;");
+            print("<a href='sold_history.php?filter=$filter'>Sold History</a>&nbsp;&gt;&nbsp;");
         }
     ?>
     <span style="color: indianred">Order Details </span>
@@ -96,7 +96,7 @@ if(isset($_SESSION['logged_in'])) {
                 <?php if($profile == 'buyer'){ ?>
                     <a href="order_history.php?filter=<?php echo $filter?>">
                 <?php }elseif($profile == 'seller'){ ?>
-                    <a href="sold_history.php">
+                    <a href="sold_history.php?filter=<?php echo $filter ?>">
                 <?php } ?>
                     <input type='button' value='Back'>
                 </a>
@@ -160,21 +160,30 @@ if(isset($_SESSION['logged_in'])) {
                         print("<a href='feedback.php?order_id=$order_id'>Leave feedback</a><br>");
                     }
                 }
+            }elseif($profile == 'seller'){
+                if($order_data['status'] == 'Ordered'){
+                    print("<p>Is the product delivered?<br><input type='button' onclick='confirmDelivery(1);' value='Delivered'></p>");
+                }
             }
         print("</div>");
 
-        print("<div class='left_column display_inline'> </div>");
-        print("<div class='center_column display_inline'>");
-            print("<p id='confirm' class='box' style='display: none'>Are you sure you want to cancel this order?<br><br>");
+        print("<div id='confirm_cancel' style='display: none' class='center_column display_inline'>");
+            print("<p class='box' >Are you sure you want to cancel this order?<br><br>");
             print("<a href='order.php?action=cancel&order_id=".$order_data['id']."'>Yes</a>&nbsp;&nbsp;&nbsp;&nbsp;");
             print("<a href='#' onclick='toggleCancel(0);'>No</a></p>");
+        print("</div>");
+//        print("<div class='left_column display_inline'> </div>");
+        print("<div id='confirm_deliver' class='center_column display_inline' style='display: none'>");
+            print("<p  class='box' >Do you want to update the order status to 'Delivered'?<br><br>");
+            print("<a href='order.php?action=deliver&order_id=".$order_data['id']."'>Yes</a>&nbsp;&nbsp;&nbsp;&nbsp;");
+            print("<a href='#' onclick='confirmDelivery(0);'>No</a></p>");
         print("</div>");
     ?>
     </div>
         <!-- Script to confirm order cancellation -->
         <script>
             function toggleCancel(i){
-                var node = document.getElementById("confirm");
+                var node = document.getElementById("confirm_cancel");
                 if(i == 0){
                     node.style.display = 'none';
                 }else if(i == 1) {
@@ -184,6 +193,14 @@ if(isset($_SESSION['logged_in'])) {
             function hide(){
                 alert("onload");
                 this.style.visibility = 'hidden';
+            }
+            function confirmDelivery(i){
+                var node = document.getElementById("confirm_deliver");
+                if(i == 0){
+                    node.style.display = 'none';
+                }else if(i == 1){
+                    node.style.display = 'inline-block';
+                }
             }
         </script>
 

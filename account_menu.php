@@ -11,7 +11,7 @@ if(isset($_SESSION['logged_in'])) {
     <div class="box menu">
         <h3>Seller Account</h3>
         <p><a href="sold_history.php">View Sold History</a></p>
-        <p><a href="edit_item.php">View & Edit Products listed</a></p>
+        <p><a href="view_products.php">View & Edit Products listed</a></p>
         <p><a href="sell.php">Sell Product</a></p>
     </div>
     <div class="box menu">
