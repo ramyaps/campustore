@@ -6,17 +6,20 @@ include_once('includes/connection.php');
 if (isset($_SESSION['logged_in'])) {
     //Fetching the user id from the session variable
     $user_id = $_SESSION['user_id'];
-
+    $query = $pdo->prepare("SELECT id, name FROM category");
+    $query->execute() or die(print_r($query->errorInfo(), true));
+    $result = $query->fetchAll(PDO::FETCH_ASSOC);
+    $name = $descr = $description = $category = $price = $quantity = $edition = $year = $author = $file = '';
     if (isset($_POST['name'], $_POST['category'], $_POST['description'], $_POST['price'], $_POST['quantity'])) {
         $name = $_POST['name'];
-        $description = $_POST['description'];
+        $descr = $description = $_POST['description'];
         $category = $_POST['category'];
         $price = $_POST['price'];
         $quantity = $_POST['quantity'];
 
         //Check if any of the input fields is empty
         if (empty($name) or empty($description) or empty($category) or empty($price) or empty($quantity)) {
-            $error = "All fields are required!";
+            $error = "***ALL FIELDS ARE REQUIRED!!";
         } else {
 
             //Check if the category is 'Books' i.e value of category id must be '1'
@@ -30,7 +33,7 @@ if (isset($_SESSION['logged_in'])) {
 
                     //Check if any of fields is empty, if so raise error.
                     if (empty($author) or empty($edition) or empty($year)) {
-                        $error = "All fields are required!";
+                        $error = "***ALL FIELDS ARE REQUIRED!!";
                     } else {
 
                         //else concatenate the author, edition and year to the description field
@@ -94,66 +97,46 @@ if (isset($_SESSION['logged_in'])) {
             header("Location: view_products.php");
         }
     }
-}
+    $page_title = 'WebShelf-Upload Product to catalog';
+    include_once('includes/header.php');
 
-$page_title = 'WebShelf-Upload Product to catalog';
-include_once('includes/header.php');
+    print("<br xmlns='http://www.w3.org/1999/html'>");
+    print("&nbsp;&nbsp;<a href='account_menu.php' id='account'>Your Account</a>&nbsp;&gt;&nbsp;<span style='color: indianred'>Sell a product</span>");
+    print("<div class='box'>");
+        print("<h3 class='center_align'> Upload Product for sale </h3>");
+        print("<em class='comments'>NOTE: No leading and trailing white-spaces allowed</em><br><br>");
+        if (isset($error)) {
+            print("<small class='bold' style='color: firebrick;'>$error</small>");
+            print("<br><br>");
+        }
+        print("<form method='post' action='sell.php' name='upload_item' enctype='multipart/form-data' >");
+            print("<label class='input_label'>Category</label><select name='category' id='category' onchange='changeDisplay()'>");
+            foreach($result as $row){
+                echo "<option value='".$row['id']."' >".$row['name']."</option>";
+            }
+            print("</select><br><br>");
+            print("<label class='input_label'>Name</label><input type='text' maxlength='45' name='name' value='$name' required><br><br>");
+            print("<div id='book_details'>");
+                print("<label class='input_label'>Author</label><input type='text' name='author' value='$author' pattern='^[A-Za-z][A-Za-z\s,&\.\-]*[A-Za-z]$'>");
+                print("<em class='comments'>*Alphabets separated by {, - & . space}</em><br><br>");
+                print("<label class='input_label'>Edition</label><input type='text' name='edition' value='$edition' pattern='^\w[\w\s]*[\w]$'>");
+                print("<em class='comments'>*No Special chars</em><br><br>");
+                print("<label class='input_label'>Year</label><input type='text' name='year' value='$year' pattern='^[1-9][0-9]{3}$'>");
+                print("<em class='comments'>*YYYY</em><br><br>");
+            print("</div>");
+            print("<label class='input_label'>Quantity</label><input type='text' name='quantity' pattern='^[1-9]\d*$'  value='$quantity' required>");
+            print("<em class='comments'>*Numbers only</em><br><br>");
+            print("<label class='input_label'>Unit Price</label><input type='text' name='price' pattern='^[1-9]\d*[.]\d{2}$' value='$price' required>");
+            print("<em class='comments'>*##.## (Numbers only) </em><br><br>");
+            print("<label class='input_label'>Description</label><br>");
+            print("<textarea name='description' rows='6' cols='50' required pattern='^\w[\w\s]*[\w]$'>".$descr."</textarea><br><br>");
+            print("<label class='input_label'>Picture</label><input type='file' name='picture'><br>");
+            print("<em class='comments'>*File size must be less than 256kb</em><br><br>");
+            print("<input type='submit' name='submit' value='Upload'>&nbsp;<a href='account_menu.php'><input type='button' name='reset' value='Cancel'></a><br>");
+
+        print("</form>");
+    print("</div>");
 ?>
-<br xmlns="http://www.w3.org/1999/html">&nbsp;&nbsp;<a href="account_menu.php" id="account">Your Account</a>&nbsp;&gt;&nbsp;<span style='color: indianred'>Sell a product</span>
-        <div class="box">
-            <h3 class="center_align"> Upload Product for sale </h3>
-            <em class="comments">*NOTE: No leading and trailing white-spaces allowed</em><br><br>
-            <?php if (isset($error)) { ?>
-                <small style="color: #aa0000;"><?php echo $error;?></small>
-                <br /><br />
-            <?php } ?>
-            <form method="post" action="sell.php" name="upload_item" enctype="multipart/form-data" >
-                <label class="input_label">Category</label>&nbsp;&nbsp;<select name="category" id="category" onchange="changeDisplay()">
-                    <?php
-                    $query = $pdo->prepare("SELECT id, name FROM category");
-                    $query->execute() or die(print_r($query->errorInfo(), true));
-                    $result = $query->fetchAll(PDO::FETCH_ASSOC);
-                    foreach($result as $row){
-                        echo "<option value='".$row['id']."' >".$row['name']."</option>";
-                    }
-                    ?>
-                </select>
-                <br><br>
-
-                <label class="input_label">Name</label>&nbsp;&nbsp;<input type="text" name="name" value="<?php isset($name) ? $name : ""; ?>" required/><br><br>
-                <div id='book_details'>
-                    <label class="input_label">Author</label>&nbsp;&nbsp;<input type='text' name='author'  pattern='^[A-Za-z][A-Za-z\s]*[A-Za-z]$'><br><br>
-                    <label class="input_label">Edition</label>&nbsp;&nbsp;<input type='text' name='edition'  pattern="^\w[\w\s]*[\w]$"/><br><br>
-                    <label class="input_label">Year</label>&nbsp;&nbsp;<input type='text' name='year' pattern='[1-9][0-9]{3}'/>
-                    <em class='comments'>*YYYY</em>
-                    <br><br>
-                </div>
-
-                <label class="input_label">Quantity</label>&nbsp;&nbsp;
-                <input type="text" name="quantity" pattern="[1-9]\d*"  value="1" required/>
-                <br><br>
-
-                <label class="input_label">Price</label>&nbsp;&nbsp;
-                <input type="text" name="price" pattern="[1-9]\d*[.]\d{2}" required/>
-                <em class="comments">*##.## (Numbers only) </em>
-                <br><br>
-
-                <label class="input_label">Description</label><br>
-                    <textarea name="description" rows="6" cols="50" required placeholder="Enter Description here.."></textarea>
-                <br><br>
-
-                <label class="input_label">Picture</label>&nbsp;&nbsp;
-                    <input type="file" name="picture"/><br>
-                    <em class="comments">*File size must be less than 256kb</em>
-                <br><br>
-
-                <input type="submit" name="submit" value="Upload"/>
-                <input type="reset" name="reset" value="Cancel"/>
-                <br>
-
-            </form>
-        </div>
-    
     <!--Script to show/hide div id "Book_details" based on dropdown menu selected -->
     <script>
         function changeDisplay(){
@@ -170,9 +153,9 @@ include_once('includes/header.php');
 
                                                               
 <?php
-include('includes/footer.php');
-//} else{
-//    header('Location: index.php');
-//}
-//
-//?><!--                    -->
+    include('includes/footer.php');
+} else{
+    header('Location: signin.php');
+}
+
+?>
