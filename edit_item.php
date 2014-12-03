@@ -32,7 +32,7 @@ if(isset($_SESSION['logged_in'])) {
 
     }elseif(empty($product_id)){
         print("<div class='box'>");
-            print("Oops! Requested URL does not exist");
+            print("<h3>Oops! Requested URL does not exist</h3>");
             print("Please click to go to <a href='index.php'>Index</a> page");
         print("</div>");
         include("includes/footer.php");
@@ -67,7 +67,7 @@ if(isset($_SESSION['logged_in'])) {
                 print("<p><label class='input_label'>Price</label><input type='text' name='price' pattern='^[1-9]\d*[.]\d{2}$' value='".number_format($product_data['price'],2)."' required>");
                 print("<em class='comments'>*##.## (Numbers only) </em></p>");
                 print("<p><input type='submit' value='Update' name='edit'>");
-                
+
             print("</form>");
         print("</div>");
 
