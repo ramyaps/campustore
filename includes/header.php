@@ -56,25 +56,29 @@ if(isset($_GET['cate_id'])) {
 	?>
    
 
-<li class="bottom">
+<li>
    <!-- Search form -->
    <form method="get" action="index.php" class="search_form">
      <input type="text" name="search_str" id="search_input" class="align-bottom" onfocus="toLarge(this)" onblur="toSmall(this)"/>
      <input type="hidden" name="action"value="search"/>
      <button type="submit" class="searchButton" >Search</button>
    </form>
+</li>
 
+<!--
 	<button href="account_menu.php" id="signin" onclick="window.location.href='account_menu.php'">Home</button>
-
+-->
 <?php
 	if(!isset($_SESSION['logged_in'])) {
 ?>
-
+ 	<li>
 	<button href="signin.php" id="signin" onclick="window.location.href='signin.php'">Sign in</button>
+	</li>
 <?php 
 	} else {
 ?>
-	<button href="signout.php" id="signout" onclick="window.location.href='signout.php'">Sign out</button>
+	<li class="float_right"><a href='account_menu.php' >Hello, <?php echo $_SESSION['nick_name'];?></a></li>
+	<li><a href="signout.php" id="signout" onclick="window.location.href='signout.php'">Sign out</a></li>
 <?php
 	}
 ?>

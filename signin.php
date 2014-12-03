@@ -23,6 +23,7 @@ if (isset($_POST['email'], $_POST['password'])) {
 		$user_type = $users[0]['type'];
             /* Added user id to session variable  - Change by ramyaps*/
         $_SESSION['user_id'] = $users[0]['id'];
+	$_SESSION['nick_name'] = $users[0]['nick_name'];
             /* End of change by ramyaps*/
 
 		if($user_type == "admin") {
