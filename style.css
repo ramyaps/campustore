@@ -34,6 +34,10 @@ body {
 input[type="submit"] {
     font-size: 20px;
 }
+input[readonly], textarea[readonly]{
+    background-color: lightgrey;
+}
+
 #signin {
     font-size: 20px;
 }

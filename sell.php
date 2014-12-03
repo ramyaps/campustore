@@ -91,7 +91,7 @@ if (isset($_SESSION['logged_in'])) {
                 $query->execute() or die(print_r($query->errorInfo(), true));
             }
 
-            header("Location: edit_item.php");
+            header("Location: view_products.php");
         }
     }
 }
