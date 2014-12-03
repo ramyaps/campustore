@@ -90,6 +90,7 @@ a:hover {
 h3 {
     color: coral;
 }
+
 .box {
     border: 2px ridge;
     border-color: gray;
@@ -99,7 +100,6 @@ h3 {
     background-color: white;
     padding-left: 30px; padding-right: 30px;
     padding-bottom: 10px; padding-top: 10px;
-    text-align: center;
 }
 .menu {
     position: relative;
@@ -221,6 +221,7 @@ th, td {
 
 .show_table {
     border: none;
+    width: 100%;
 }
 
 .show_table td {
