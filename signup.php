@@ -18,9 +18,9 @@ if (isset($_POST['email'], $_POST['nick_name'], $_POST['first_name'], $_POST['la
 	    $error = "You must fill all the fields!";
 	} else if ($password != $confirm_password){
 	    $error = "password and confirm password don't match!";
-	} else if(verifyEmail($email) == 'invalid') {
+	}/* else if(verifyEmail($email) == 'invalid') {
 	    $error = "email address doesn't exist!";
-	}/* else if($user->isEmailExist($email)) {
+	} else if($user->isEmailExist($email)) {
 	    $error = "This email is already registered. Please sign in.";
 	} */
 	else {
