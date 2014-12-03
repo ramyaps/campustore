@@ -59,7 +59,7 @@ if(isset($_GET['cate_id'])) {
 <li>
    <!-- Search form -->
    <form method="get" action="index.php" class="search_form">
-     <input type="text" name="search_str" id="search_input" class="align-bottom" onfocus="toLarge(this)" onblur="toSmall(this)"/>
+     <input type="text" name="search_str" id="search_input" class="align-bottom" onfocus="toLarge(this)" onblur="toSmall(this)" pattern="^[0-9a-zA-Z]{1,20}$" required/>
      <input type="hidden" name="action"value="search"/>
      <button type="submit" class="searchButton" >Search</button>
    </form>

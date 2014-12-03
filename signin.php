@@ -28,7 +28,7 @@ if (isset($_POST['email'], $_POST['password'])) {
 
 		if($user_type == "admin") {
 		    //echo "admin";
-		    header("Location: admin/index.php");
+		    header("Location: admin_index.php");
 		} else {
 		    //echo "regular";
 		    //It used to be home_page.php,
@@ -53,7 +53,9 @@ if (isset($_POST['email'], $_POST['password'])) {
      <div class="form">
 	<form action="signin.php" method="post" autocomplete="on">
 	     <label>Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-	     <input type="email" name="email" placeholder="xxx@xxx.edu" pattern="^[a-z0-9A-Z._%+-]+@[a-z0-9A-Z.-]+\.edu$" value="<?php echo $_POST['email'];?>"> 
+	     <input type="text" name="email" placeholder="xxx@xxx.edu" value="<?php echo $_POST['email'];?>"> 
+<!--pattern="^[a-z0-9A-Z._%+-]+@[a-z0-9A-Z.-]+\.edu$" -->
+
 	     <br><br>
 	     <label>Password</label>
 	     <input type="password" name="password" placeholder="Password" value= "<?php echo $_POST['password'];?>">
