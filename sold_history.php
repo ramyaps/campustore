@@ -35,7 +35,8 @@ if(isset($_SESSION['logged_in'])) {
     print("<div class='box' xmlns='http://www.w3.org/1999/html'>");
         print("<h3>List of products sold</h3>");
         print("<a href='sold_history.php'". (($filter=='' || $filter=='Delivered') ? "style='color: indianred'>" : ">")."Delivered</a>&nbsp;&nbsp;&nbsp;&nbsp;");
-        print("<a href='sold_history.php?filter=Ordered'". ($filter=='Ordered' ? "style='color: indianred'>" : ">")."To be fulfilled</a>&nbsp;&nbsp;&nbsp;&nbsp;");
+        print("<a href='sold_history.php?filter=Ordered'". ($filter=='Ordered' ? "style='color: indianred'>" : ">")."Pending</a>&nbsp;&nbsp;&nbsp;&nbsp;");
+	print("<br><br>");
         print("<table><tr><th>Order Id</th><th>Product</th><th>Date</th></tr>");
         foreach($orders as $row) {
             print("<tr>");

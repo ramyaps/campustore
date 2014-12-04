@@ -11,14 +11,19 @@ $page_num = isset($_GET['page_num']) ? $_GET['page_num'] : 1;
 if(isset($_GET['action']) and $_GET['action'] == 'search') {
 	$keywords = $_GET['search_str'];
 	$data = $product->search($keywords, $page_num);
+
 } else {
 	$data = $product->fetch_by_category($category_id, $page_num);
 }
 
 ?>
-<div class="box">
+<div class="box_center">
 	<table class="show_table">
 	    <?php 
+	
+		if(empty($data)) {
+			echo "<br><br><br><p>Nothing found!</p><br><br><br>";
+		}
 		$MAX_COLUMN = 4;
 		$column_count = 0;
 		foreach ($data as $item) { 
@@ -33,9 +38,7 @@ if(isset($_GET['action']) and $_GET['action'] == 'search') {
 	    ?>
 		    <td>
 		    <div class="item">
-			<img class="item_icon" src=<?php echo $icon_path?> alt="item picture">
-			<br>
-			<a href="product_detail.php?id=<?php echo $item['id'];?>"><?php echo $item['name']; ?></a> 
+			<a href="product_detail.php?id=<?php echo $item['id'];?>"><img class="item_icon" src=<?php echo $icon_path?> alt="item picture"><br><?php echo $item['name']; ?></a> 
 			<br>
 	       		<!--  
 			<small>posted in

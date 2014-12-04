@@ -62,14 +62,41 @@ if(isset($_SESSION['logged_in'])) {
             print("<div><label class='input_label'>Product Name: </label><span>".$product_data['name']."</span></div><br>");
             print("<div><label class='input_label'>Seller Name: </label><span>".$seller['first_name']." ".$seller['last_name']."</span></div><br>");
             print("<div><input type='hidden' name='seller' value='".$seller['id']."'></div> <br>");
-            print("<div><input type='hidden' name='reviewer' value='".$reviewer_id."'></div> <br>");
-            print("<div><label class='input_label'>Rating:</label><input type='number' name='stars' min='1' max='5' pattern='[1-5]' required></div><br>");
-            print("<div><label class='input_label'>Comments:</label></div><br>");
-            print("<div><textarea rows='8' cols='50' name='content' maxlength='5000' required></textarea></div>");
-            print("<div><input type='submit' name='review' value='Submit feedback'><input type='reset' value='Clear'><input type='button' value='Back' onclick='history.go(-1)'></div>");
-        print("</form>");
-    print("</div></div>");
+            print("<div><input type='hidden' name='reviewer' value='".$reviewer_id."'></div>");
+?>
+            <div>
+<!--<label>Rating:</label> -->
 
+<!--
+<input type='number' name='stars' min='1' max='5' pattern='[1-5]' required></div><br>
+-->
+<strong class="choice">Choose a rating</strong>
+<span class="star-rating">
+  <input type="radio" name="stars" value="1"><i></i>
+  <input type="radio" name="stars" value="2"><i></i>
+  <input type="radio" name="stars" value="3"><i></i>
+  <input type="radio" name="stars" value="4"><i></i>
+  <input type="radio" name="stars" value="5"><i></i>
+</span>
+<script>
+$(window).load(function(){
+$(':radio').change(
+function(){
+console.log(this.value);
+$('.choice').text( this.value + ' stars' );
+}
+)
+});
+</script>
+	    <br><br>
+
+            <div><label class='input_label'>Comments:</label></div><br>
+            <div><textarea rows='8' cols='50' name='content' maxlength='5000' required></textarea></div>
+            <div><input type='submit' name='review' value='Submit feedback'><input type='reset' value='Clear'><input type='button' value='Back' onclick='history.go(-1)'></div>
+        </form>
+    </div></div>
+
+<?php
 include('includes/footer.php');
 } else {
     include("signin.php");

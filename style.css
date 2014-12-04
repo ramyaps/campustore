@@ -7,19 +7,6 @@ body {
     font-family: Arial;
 }
 
-#cssmenu {
-/*
-    background: coral;
-    position: absolute;
-    width:100%;
-    top: 0px;
-    left: 0px;
-    vertical-align: bottom;
-    */
-}
-
-
-
 #category_dropdown {
     font-size: 20px;
 }
@@ -32,8 +19,12 @@ body {
     font-size: 20px;
 }
 input[type="submit"] {
-    font-size: 20px;
+    font-size: 25px;
 }
+input[type="button"] {
+    font-size: 25px;
+}
+
 input[readonly], textarea[readonly]{
     background-color: lightgrey;
 }
@@ -51,16 +42,16 @@ input[readonly], textarea[readonly]{
     font-size: 20px;
 }
 .form{
-   /* text-align: center;*/
-    margin-left: 35%;
+    text-align: center;
     margin-bottom: 10%;
     font-size: 16px;
 }
 
 .footer {
     width:100%;
-    background: lightgray;
     text-align: center;
+    font-size: 18px;
+
 }
 .container{
     background:lightGray;
@@ -69,7 +60,6 @@ input[readonly], textarea[readonly]{
 a:link, a:visited {
     color: slateGray;
     text-decoration: none;
-    border-bottom: 1px dotted slateGray;
 }
 
 a:hover {
@@ -90,20 +80,35 @@ a:hover {
 h3 {
     color: coral;
 }
+
 .box {
     border: 2px ridge;
     border-color: gray;
     border-radius: 10px;
     margin: 15px;
+    margin-top: 40px;
     background-color: white;
     padding-left: 30px; padding-right: 30px;
     padding-bottom: 10px; padding-top: 10px;
 }
+.box_center {
+    border: 2px ridge;
+    border-color: gray;
+    border-radius: 10px;
+    margin: 15px;
+    margin-top: 40px;
+    background-color: white;
+    padding-left: 30px; padding-right: 30px;
+    padding-bottom: 10px; padding-top: 10px;
+    text-align: center;
+}
 .menu {
     position: relative;
-    width: 400px;
+    width: 80%;
     text-align: left;
-    padding: 10px;
+    padding-left: 10%;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 .logo {
     height: 98px;
@@ -219,11 +224,13 @@ th, td {
 
 .show_table {
     border: none;
+    width: 100%;
 }
 
 .show_table td {
     border: none;
     padding: 20px;
+    text-align: left;
 }
 
 .page_nav {
@@ -237,3 +244,77 @@ th, td {
 .search_form {
    display: inline-block;
 }
+#delete_button {
+   background-color: red;
+   font-size: 40px;
+   padding: 10px;
+}
+.mybutton{
+   font-size: 20px;
+}
+
+
+
+/****************** for feedback stars ******************/
+.star-rating {
+  font-size: 0;
+  white-space: nowrap;
+  display: inline-block;
+  width: 250px;
+  height: 50px;
+  overflow: hidden;
+  position: relative;
+  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
+  background-size: contain;
+}
+.star-rating i { 
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 20%;
+  z-index: 1;
+  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
+  background-size: contain;
+}
+
+.star-rating input {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  opacity: 0;
+  display: inline-block;
+  width: 20%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 2;
+  position: relative;
+}
+.star-rating input:hover + i,
+.star-rating input:checked + i {
+  opacity: 1;
+}
+.star-rating i ~ i {
+  width: 40%;
+}
+.star-rating i ~ i ~ i {
+  width: 60%;
+}
+.star-rating i ~ i ~ i ~ i {
+  width: 80%;
+}
+.star-rating i ~ i ~ i ~ i ~ i {
+  width: 100%;
+}
+.choice {
+  /*position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  */
+  text-align: left;
+  padding-bottom: 20px;
+  display: block;
+}
+

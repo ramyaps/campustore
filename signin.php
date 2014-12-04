@@ -24,17 +24,10 @@ if (isset($_POST['email'], $_POST['password'])) {
             /* Added user id to session variable  - Change by ramyaps*/
         $_SESSION['user_id'] = $users[0]['id'];
 	$_SESSION['nick_name'] = $users[0]['nick_name'];
+	$_SESSION['type'] = $users[0]['type'];
             /* End of change by ramyaps*/
 
-		if($user_type == "admin") {
-		    //echo "admin";
-		    header("Location: admin/index.php");
-		} else {
-		    //echo "regular";
-		    //It used to be home_page.php,
-		    //However, account_menu seems to have all we need in home_page.php
-		    header("Location: account_menu.php");
-		}
+	    header("Location: account_menu.php");
 		
 	    } else {
 		$error = "username and password don't match!";
@@ -44,7 +37,7 @@ if (isset($_POST['email'], $_POST['password'])) {
     
     include('includes/header.php');
 ?>
-	<div class="box">
+	<div class="box_center">
 	<br /><br />
 	<h2 class="center_align">Sign in</h2>
 	<?php if (isset($error)) {?>
@@ -53,7 +46,9 @@ if (isset($_POST['email'], $_POST['password'])) {
      <div class="form">
 	<form action="signin.php" method="post" autocomplete="on">
 	     <label>Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-	     <input type="email" name="email" placeholder="xxx@xxx.edu" pattern="^[a-z0-9A-Z._%+-]+@[a-z0-9A-Z.-]+\.edu$" value="<?php echo $_POST['email'];?>"> 
+	     <input type="text" name="email" placeholder="xxx@xxx.edu" value="<?php echo $_POST['email'];?>"> 
+<!--pattern="^[a-z0-9A-Z._%+-]+@[a-z0-9A-Z.-]+\.edu$" -->
+
 	     <br><br>
 	     <label>Password</label>
 	     <input type="password" name="password" placeholder="Password" value= "<?php echo $_POST['password'];?>">
