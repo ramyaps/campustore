@@ -21,11 +21,13 @@ if(isset($_SESSION['logged_in'])) {
 //        $quantity = isset($_POST['quantity']) ? $_POST['quantity'] : "";
         $price = isset($_POST['price']) ? $_POST['price'] : "";
         $name = isset($_POST['name']) ? $_POST['name'] : "" ;
-        $query = $pdo->prepare("UPDATE product SET name = ?, price = ? WHERE id = ?");
+	$desc = isset($_POST['descr']) ? $_POST['descr'] : "";
+        $query = $pdo->prepare("UPDATE product SET name = ?, price = ?, description= ?  WHERE id = ?");
         $query->bindValue(1, $name);
         $query->bindValue(2, $price);
+	$query->bindValue(3, $desc);
 //        $query->bindValue(3, $quantity);
-        $query->bindValue(3, $product_id);
+        $query->bindValue(4, $product_id);
         $query->execute() or die(print_r($query->errorInfo()));
 
         $heading = "Updated Successfully";
@@ -61,7 +63,7 @@ if(isset($_SESSION['logged_in'])) {
 //                    print("<em class='comments'>*YYYY</em>");
 //                    print("</div>");
 //                }
-                print("<p><label class='input_label'>Description</label><br><textarea rows='8' cols='50' name='descr' readonly>".$product_data['description']."</textarea></p>");
+                print("<p><label class='input_label'>Description</label><br><textarea rows='8' cols='50' name='descr'>".$product_data['description']."</textarea></p>");
 //                print("<p><label class='input_label'>Quantity</label><input type='text' name='quantity' pattern='^[1-9]\d*$'  value='".$product_data['quantity']."' required>");
 //                print("<em class='comments'>*Numbers only</em></p>");
                 print("<p><label class='input_label'>Price</label><input type='text' name='price' pattern='^[1-9]\d*[.]\d{2}$' value='".number_format($product_data['price'],2)."' required>");
