@@ -87,7 +87,7 @@ if(isset($_GET['cate_id'])) {
 		</ul>
 	    </li>
 	    
-	    <li><a href="#">Buer Account</a>
+	    <li><a href="#">Buyer Account</a>
 		<ul>
 		    <li><a href="order_history.php">Order History</a></li>
 		    <li><a href="order_history.php?filter=Delivered">Feedback</a></li>
