@@ -72,10 +72,19 @@ if (isset($_GET['id'])) {
             <input type="hidden" name="receiver_id" value="<?php echo $seller['id']?>">
             Contact Seller <input type="submit" name="msg_submit" value="Send Message">
         </form>
+	<br><br>
+	<?php
+	    if($_SESSION['type'] == "admin") {
+	?>
+		<button id='delete_button' onclick="location.href='admin_delete.php?id=<?php echo $data['id']?>'">Delete</button>
+	<?php   
+	    }
+	?>
+
     </div>
     <br>
     <div class="left_column display_inline">
-        <p class="center_align"><input type='button' value='Back' onclick='history.go(-1)'></p>
+        <p class="center_align"><input type='button' class="mybutton" value='Back' onclick='history.go(-1)'></p>
     </div>
 </div>
 </div>

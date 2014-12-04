@@ -70,11 +70,12 @@ class Product {
     }
     
     public function delete_data($product_id) {
+echo "start delete";
 	global $pdo;
 	$delete = $pdo->prepare("DELETE FROM product WHERE id = :id");
 	$delete->bindParam(':id', $product_id, PDO::PARAM_INT);
 	$delete->execute();
-
+echo "end delete";
 	return 0;
     }
 }

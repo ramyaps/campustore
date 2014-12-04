@@ -1,51 +1,49 @@
 <?php
-SESSION_START();
-
-include_once('../includes/connection.php');
-include_once('../includes/product.php');
-
+session_start();
+include_once("includes/connection.php");
+include_once("includes/product.php");
 $product = new Product();
-$data = $product->fetch_all();
 
-if (isset($_SESSION['logged_in'])) {
-    if (isset($_POST['delete_ids'])) {
-	foreach($_POST['delete_ids'] as $delete_id) {
-	    $product->delete_data($delete_id);
-	    echo "delete ";
-	    echo $delete_id;
-	    echo "<br/>";
-	}
-	$data = $product->fetch_all();
+if(isset($_SESSION['logged_in'])) {
+    include('includes/header.php');
+
+    if(!isset($_GET['id'])) {
+	header("Location: index.php");
     }
+    $id = $_GET['id'];
+
+    if(isset($_GET['confirm_state'])) {
+	if($_SESSION['type']=='admin'){
+		$product->delete_data($id);
+		echo "<div class='box_center'><br><br><br>";
+		echo "<p>Delete complete!</p>";
+		echo "<a href='index.php'>Home Page</a><br><br><br></div>";
+	} else {
+		header("Location: index.php");
+	}
+   
+     } else {
+	
 ?>
-    
-<!DOCTYPE html>
-<head>
-    <title>WebShelf</title>
-    <link rel="stylesheet" href="../style.css" type="text/css">
-</head>
 
-<body>
-    <div class = "container">
-	<a href="../index.php" id="logo">WebShelf</a>
-
-	<br /><br />
-    <form action="delete.php" method="POST">
-	<?php foreach ($data as $item) {?>
-	    <input type="checkbox" name="delete_ids[]" value=<?php echo $item["id"]?>>
-		<?php echo $item["name"]?></option>
-	<?php }?>
-	<input type="submit" value="Submit">
-    </form>	
-    </div>
-</body>
-</html>
-
-
+<div class="box_center">
+<br><br><br>
+<form method="get" action="admin_delete.php">
+<p>Are you sure to delete this item permanently ? </p>
+<input type="hidden" name="confirm_state" value="true">
+<input type="hidden" name="id" value="<?php echo $id;?>">
+<input type="submit" value="Yes" class="myButton">
+<input type="button" value="No" onclick="javascript:window.location='index.php'" class="myButton">
+</form>
+<br><br><br>
+</div>
 
 <?php
-} else {
-    header('Location: index.php');
-}
+    include('includes/footer.php');
+ }
 
+} else {
+    header("Location: signin.php");
+}
 ?>
+
