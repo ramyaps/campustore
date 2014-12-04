@@ -51,8 +51,7 @@ input[readonly], textarea[readonly]{
     font-size: 20px;
 }
 .form{
-   /* text-align: center;*/
-   /* margin-left: 35%;*/
+    text-align: center;
     margin-bottom: 10%;
     font-size: 16px;
 }
@@ -100,6 +99,17 @@ h3 {
     background-color: white;
     padding-left: 30px; padding-right: 30px;
     padding-bottom: 10px; padding-top: 10px;
+}
+.box_center {
+    border: 2px ridge;
+    border-color: gray;
+    border-radius: 10px;
+    margin: 15px;
+    margin-top: 40px;
+    background-color: white;
+    padding-left: 30px; padding-right: 30px;
+    padding-bottom: 10px; padding-top: 10px;
+    text-align: center;
 }
 .menu {
     position: relative;

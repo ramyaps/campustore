@@ -16,7 +16,7 @@ if(isset($_GET['action']) and $_GET['action'] == 'search') {
 }
 
 ?>
-<div class="box">
+<div class="box_center">
 	<table class="show_table">
 	    <?php 
 		$MAX_COLUMN = 4;

@@ -44,7 +44,7 @@ if (isset($_POST['email'], $_POST['password'])) {
     
     include('includes/header.php');
 ?>
-	<div class="box">
+	<div class="box_center">
 	<br /><br />
 	<h2 class="center_align">Sign in</h2>
 	<?php if (isset($error)) {?>
