@@ -51,7 +51,7 @@ if(isset($_SESSION['logged_in'])) {
         print("<span style='color: indianred'>Edit Item</span>");
         print("<div class='box' xmlns='http://www.w3.org/1999/html'>");
         print("<h3>$heading</h3>");
-            print("<form  method='POST' action='edit_Item.php?action=edit'>");
+            print("<form  method='POST' action='edit_item.php?action=edit'>");
                 print("<input type='hidden' name='pid' value='".$product_data['id']."'>");
                 print("<p><label class='input_label'>Category</label><input type='text' value='".$category['name']."' readonly></p>");
                 print("<p><label class='input_label'>Name</label><input type='text' name='name' value='".$product_data['name']."' required></p>");

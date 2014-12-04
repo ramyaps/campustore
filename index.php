@@ -38,7 +38,15 @@ if(isset($_GET['action']) and $_GET['action'] == 'search') {
 	    ?>
 		    <td>
 		    <div class="item">
-			<a href="product_detail.php?id=<?php echo $item['id'];?>"><img class="item_icon" src=<?php echo $icon_path?> alt="item picture"><br><?php echo $item['name']; ?></a> 
+			<a href="product_detail.php?id=<?php echo $item['id'];?>"><img class="item_icon" src=<?php echo $icon_path?> alt="item picture"><br><br>
+			<?php
+				if($item['order_status'] != "Available") {
+					$display_name = "<del>".$item['name']."</del>"; 
+				} else {
+					$display_name = "<label>".$item['name']."</label>"; 
+				}
+				echo "[&nbsp;$".$item['price']." ] ".$display_name;
+			?></a> 
 			<br>
 	       		<!--  
 			<small>posted in

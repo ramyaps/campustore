@@ -318,3 +318,8 @@ th, td {
   display: block;
 }
 
+
+
+del {
+   color: black;
+}
