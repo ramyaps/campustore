@@ -7,19 +7,6 @@ body {
     font-family: Arial;
 }
 
-#cssmenu {
-/*
-    background: coral;
-    position: absolute;
-    width:100%;
-    top: 0px;
-    left: 0px;
-    vertical-align: bottom;
-    */
-}
-
-
-
 #category_dropdown {
     font-size: 20px;
 }
@@ -62,8 +49,9 @@ input[readonly], textarea[readonly]{
 
 .footer {
     width:100%;
-    background: lightgray;
     text-align: center;
+    font-size: 18px;
+
 }
 .container{
     background:lightGray;
@@ -72,7 +60,6 @@ input[readonly], textarea[readonly]{
 a:link, a:visited {
     color: slateGray;
     text-decoration: none;
-    border-bottom: 1px dotted slateGray;
 }
 
 a:hover {

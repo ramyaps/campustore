@@ -27,15 +27,7 @@ if (isset($_POST['email'], $_POST['password'])) {
 	$_SESSION['type'] = $users[0]['type'];
             /* End of change by ramyaps*/
 
-		if($user_type == "admin") {
-		    //echo "admin";
-		    header("Location: admin_index.php");
-		} else {
-		    //echo "regular";
-		    //It used to be home_page.php,
-		    //However, account_menu seems to have all we need in home_page.php
-		    header("Location: account_menu.php");
-		}
+	    header("Location: account_menu.php");
 		
 	    } else {
 		$error = "username and password don't match!";

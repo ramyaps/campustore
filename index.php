@@ -33,9 +33,7 @@ if(isset($_GET['action']) and $_GET['action'] == 'search') {
 	    ?>
 		    <td>
 		    <div class="item">
-			<img class="item_icon" src=<?php echo $icon_path?> alt="item picture">
-			<br>
-			<a href="product_detail.php?id=<?php echo $item['id'];?>"><?php echo $item['name']; ?></a> 
+			<a href="product_detail.php?id=<?php echo $item['id'];?>"><img class="item_icon" src=<?php echo $icon_path?> alt="item picture"><br><?php echo $item['name']; ?></a> 
 			<br>
 	       		<!--  
 			<small>posted in

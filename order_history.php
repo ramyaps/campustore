@@ -54,6 +54,7 @@ if(isset($_SESSION['logged_in'])) {
     print("<a href='order_history.php'". (($filter=='' || $filter=='Ordered') ? "style='color: indianred'>" : ">")."Active</a>&nbsp;&nbsp;&nbsp;&nbsp;");
     print("<a href='order_history.php?filter=Delivered'". ($filter=='Delivered' ? "style='color: indianred'>" : ">")."Completed</a>&nbsp;&nbsp;&nbsp;&nbsp;");
     print("<a href='order_history.php?filter=Cancelled'". ($filter=='Cancelled' ? "style='color: indianred'>" : ">")."Cancelled</a>");
+    print("<br><br>");
     if($filter == 'Delivered') {
         print("<table><tr><th>Order Id</th><th>Product</th><th>Date</th><th>Feedback</th></tr>");
         foreach($purchase AS $row){
