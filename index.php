@@ -11,10 +11,7 @@ $page_num = isset($_GET['page_num']) ? $_GET['page_num'] : 1;
 if(isset($_GET['action']) and $_GET['action'] == 'search') {
 	$keywords = $_GET['search_str'];
 	$data = $product->search($keywords, $page_num);
-	if(empty($data)) {
-		echo "<br><br><br><p>Nothing found!</p>";
-		exit();
-	}
+
 } else {
 	$data = $product->fetch_by_category($category_id, $page_num);
 }
@@ -23,6 +20,10 @@ if(isset($_GET['action']) and $_GET['action'] == 'search') {
 <div class="box_center">
 	<table class="show_table">
 	    <?php 
+	
+		if(empty($data)) {
+			echo "<br><br><br><p>Nothing found!</p><br><br><br>";
+		}
 		$MAX_COLUMN = 4;
 		$column_count = 0;
 		foreach ($data as $item) { 
