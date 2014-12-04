@@ -46,7 +46,7 @@ if (isset($_GET['id'])) {
     <div class="display_inline center_column text_wrap">
         <h3><?php echo $data['name']?></h3>
         <p><?php echo $data['description']?></p>
-        <p>Sold by: &nbsp;<span style="color: indianred"><?php echo $seller['first_name']." ".$seller['last_name'] ?></span></p>
+        <p>Sold by: &nbsp;<a href='seller.php?seller=<?php echo $seller['id'] ?>'><span style="color: indianred"><?php echo $seller['first_name']." ".$seller['last_name'] ?></span></a></p>
         <em>User Feedback&nbsp;<meter value="<?php echo $feedback ?>" min="0" max="5"></meter><?php echo " ".$feedback."/5.0" ?></em><br><br>
         <p>Price: &nbsp;&dollar; <?php echo number_format($data['price'],2) ?> </p>
         <p>Quantity Available: &nbsp;<?php echo $quantity_available?> </p><br><br>
