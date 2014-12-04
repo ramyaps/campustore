@@ -49,7 +49,7 @@ if (isset($_SESSION['logged_in'])) {
         } else {
             //if user has chosen an image file for upload, check the file size
             if ($_FILES['picture']['size'] > 256000) {
-                $error =  "Sorry, your file is too large.";
+                $error =  "***SORRY, YOUR FILE IS TOO LARGE.";
             }else {
 		        $uploaddir = './uploads/icons/';
                 $target_path = $uploaddir . basename( $_FILES['picture']['tmp_name']);
@@ -112,10 +112,11 @@ if (isset($_SESSION['logged_in'])) {
         print("<form method='post' action='sell.php' name='upload_item' enctype='multipart/form-data' >");
             print("<label class='input_label'>Category</label><select name='category' id='category' onchange='changeDisplay()'>");
             foreach($result as $row){
-                echo "<option value='".$row['id']."' >".$row['name']."</option>";
+                print("<option value='".$row['id']."'".($row['id'] == $category ? " selected>" : ">").$row['name']."</option>");
             }
             print("</select><br><br>");
             print("<label class='input_label'>Name</label><input type='text' maxlength='45' name='name' value='$name' required><br><br>");
+            if($category == '' || $category == 1){
             print("<div id='book_details'>");
                 print("<label class='input_label'>Author</label><input type='text' name='author' value='$author' pattern='^[A-Za-z][A-Za-z\s,&\.\-]*[A-Za-z]$'>");
                 print("<em class='comments'>*Alphabets separated by {, - & . space}</em><br><br>");
@@ -124,6 +125,7 @@ if (isset($_SESSION['logged_in'])) {
                 print("<label class='input_label'>Year</label><input type='text' name='year' value='$year' pattern='^[1-9][0-9]{3}$'>");
                 print("<em class='comments'>*YYYY</em><br><br>");
             print("</div>");
+            }
             print("<label class='input_label'>Quantity</label><input type='text' name='quantity' pattern='^[1-9]\d*$'  value='$quantity' required>");
             print("<em class='comments'>*Numbers only</em><br><br>");
             print("<label class='input_label'>Unit Price</label><input type='text' name='price' pattern='^[1-9]\d*[.]\d{2}$' value='$price' required>");
