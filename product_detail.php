@@ -65,6 +65,10 @@ if (isset($_GET['id'])) {
         <?php
         } else { ?>
             <p class="comments">Not available.</p>
+	    <form action="waiting_list.php" method="POST">
+	       <input type="hidden" name="product_id" value="<?php echo $data['id'];?>"/>
+	       <input type="submit" value="Add me to waiting list"/>
+	    </form>
         <?php
         }
         ?>

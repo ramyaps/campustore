@@ -66,7 +66,7 @@ if(isset($_SESSION['logged_in'])){
         if(!empty($message)){
            print("<textarea rows='8' cols='50' name='text' readonly>".$message['body']."</textarea>");
         }
-        print("<p><input type='submit' name='send_submit' value='Send Message'><input type='reset' name='clear' value='Clear'>");
+        print("<p><input type='submit' name='send_submit' value='Send Message'><input type='reset' name='clear' value='Clear' class='mybutton'>");
         print("<input type='button' value='Back' onclick='history.go(-1)'></p>");
         print("</form>");
         print("</div>");

@@ -100,20 +100,57 @@ if (isset($_SESSION['logged_in'])) {
         $seller_data = $user->fetch_user($product_data['user_id']);   //fetch the seller details
         $feedback = $user->fetch_feedback($product_data['user_id']);  // fetch seller feedback
 
-        //Update the status as AVAILABLE in product table
-        $order_data = $query->fetch(PDO::FETCH_ASSOC);
-        $query = $pdo->prepare("UPDATE product SET order_status = ?, next_time = ? WHERE id = ?");
-        $query->bindValue(1, "Available");
-        $query->bindValue(2, date("Y-m-d H:i:s"));
-        $query->bindValue(3, $product_data['id']);
-        $query->execute() or die(print_r($query->errorInfo()));
-
-        //Update the order status as CANCELLED in orders table
+	//Update the order status as CANCELLED in orders table
         $query = $pdo->prepare("UPDATE orders SET `status` = ? WHERE id = ?");
         $query->bindValue(1, "Cancelled");
         $query->bindValue(2, $order_id);
         $query->execute() or die(print_r($query->errorInfo()));
 
+echo "start search waiting list";	
+echo (int)$product_data['id'];
+	// If there are any buyers in waiting list, place the order automatically and send a notification message
+	$query = $pdo->prepare("SELECT * FROM campustore.waiting_list where product_id =? order by add_date desc");
+echo "start bind";
+	$query->bindValue(1, (int)$product_data['id'], PDO::PARAM_INT);
+echo "bind end";
+	$query->execute() or die(print_r($query->errorInfo()));
+	$waiting_list = $query->fetchall();
+echo "end search";
+	
+	if(count($waiting_list) > 0) {
+	 //Create new order
+echo "start create new order";
+            $query = $pdo->prepare("INSERT INTO orders (buyer_id, product_id, date_time, status, total_price, quantity) VALUES (?,?,?,?,?,?)");
+            $query->bindValue(1, $waiting_list[0]['user_id']);
+            $query->bindValue(2, $waiting_list[0]['product_id']);
+            $query->bindValue(3, date("Y-m-d H:i:s"));
+            $query->bindValue(4, "Ordered");
+            $query->bindValue(5, $product_data['price']);
+            $query->bindValue(6, 1);
+            $query->execute() or die(print_r($query->errorInfo(), true));
+
+echo "start send message ";
+	$title_tmp = "New order is placed";
+	$body_tmp = "You order for ".$product_data['name']." is place automatically. Please check your order history to complete it!";
+  	$query = $pdo->prepare("INSERT INTO message (sender_id, receiver_id, date_time, title, body, status) VALUES (?,?,?,?,?,?)");
+        $query->bindValue(1, 1);
+        $query->bindValue(2, $waiting_list[0]['user_id']);
+        $query->bindValue(3, date("Y-m-d H:i:s"));
+        $query->bindValue(4, $title_tmp);
+        $query->bindValue(5, $body_tmp);
+        $query->bindValue(6, 'UNREAD');
+        $query->execute() or die(print_r($query->errorInfo()));
+echo "end send message";
+
+	} else {
+       		//Update the status as AVAILABLE in product table
+      	    $order_data = $query->fetch(PDO::FETCH_ASSOC);
+       	    $query = $pdo->prepare("UPDATE product SET order_status = ?, next_time = ? WHERE id = ?");
+            $query->bindValue(1, "Available");
+            $query->bindValue(2, date("Y-m-d H:i:s"));
+            $query->bindValue(3, $product_data['id']);
+            $query->execute() or die(print_r($query->errorInfo()));
+	}
         $page_title = "Webshelf-Order Cancellation";
         include_once('includes/header.php');
 

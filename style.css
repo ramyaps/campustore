@@ -250,7 +250,7 @@ th, td {
    padding: 10px;
 }
 .mybutton{
-   font-size: 20px;
+   font-size: 25px;
 }
 
 
@@ -318,3 +318,8 @@ th, td {
   display: block;
 }
 
+
+
+del {
+   color: black;
+}
